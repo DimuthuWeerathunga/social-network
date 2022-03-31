@@ -1,4 +1,4 @@
-.thread-item-info {
+/* .thread-item-info {
   display: flex;
 }
 
@@ -24,4 +24,8 @@
 
 .latest-post__avatar {
   margin-left: 1rem;
+} */
+
+.ant-list-item-action {
+  text-align: right;
 }

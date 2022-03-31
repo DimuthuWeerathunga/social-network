@@ -1,9 +1,14 @@
 import React from 'react';
-import { List, Avatar, Space, Pagination } from 'antd';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
+import { List, Avatar, Pagination } from 'antd';
+import {
+  MessageOutlined,
+  LikeOutlined,
+  DislikeOutlined,
+} from '@ant-design/icons';
+
+import IconText from '../shared/IconText';
 
 import './ThreadList.css';
-import { Link } from 'react-router-dom';
 
 const listData = [];
 for (let i = 0; i < 10; i++) {
@@ -13,20 +18,14 @@ for (let i = 0; i < 10; i++) {
     avatar: 'https://joeschmoe.io/api/v1/random',
     description: (
       <div>
-        <Link to={'/'}>This leads to op</Link>
+        We supply a series of design principles, practical patterns and high
+        quality
       </div>
     ),
     content:
       'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
   });
 }
-
-const IconText = ({ icon, text }) => (
-  <Space>
-    {React.createElement(icon)}
-    {text}
-  </Space>
-);
 
 function ThreadList() {
   return (
@@ -41,14 +40,19 @@ function ThreadList() {
             key={item.title}
             actions={[
               <IconText
-                icon={StarOutlined}
-                text='156'
-                key='list-vertical-star-o'
-              />,
-              <IconText
                 icon={LikeOutlined}
                 text='156'
                 key='list-vertical-like-o'
+                haveButton
+                type='primary'
+              />,
+              <IconText
+                icon={DislikeOutlined}
+                text='156'
+                key='list-vertical-dislike-o'
+                haveButton
+                type='danger'
+                ghost
               />,
               <IconText
                 icon={MessageOutlined}
@@ -56,13 +60,13 @@ function ThreadList() {
                 key='list-vertical-message'
               />,
             ]}
-            extra={
-              <img
-                width={272}
-                alt='logo'
-                src='https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'
-              />
-            }
+            // extra={
+            //   <img
+            //     width={272}
+            //     alt='logo'
+            //     src='https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png'
+            //   />
+            // }
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
@@ -74,7 +78,7 @@ function ThreadList() {
         )}
       />
       <Pagination
-        style={{ marginTop: '2rem', textAlign: 'right' }}
+        style={{ margin: '2rem 1rem 2rem 0', textAlign: 'right' }}
         defaultPageSize={20}
         pageSizeOptions={['20', '25', '30']}
         showSizeChanger={true}
