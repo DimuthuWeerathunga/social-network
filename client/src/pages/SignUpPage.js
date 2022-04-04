@@ -4,10 +4,10 @@ import { Col } from 'antd';
 import AppHeader from '../components/Navigation/AppHeader';
 import SignUpForm from '../components/auth/SignUpForm';
 
-function SignUpPage() {
+function SignUpPage(props) {
   return (
     <>
-      <AppHeader />
+      <AppHeader {...props} />
       <Col
         span={12}
         offset={4}

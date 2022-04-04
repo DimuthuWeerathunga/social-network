@@ -1,9 +1,9 @@
 import React from 'react';
 import { Space, Button } from 'antd';
 
-function IconText({ icon, text, haveButton, type, ghost, size }) {
+function IconText({ icon, text, haveButton, type, ghost, size, style }) {
   return (
-    <Space>
+    <Space style={style}>
       {haveButton ? (
         <Button
           type={type}

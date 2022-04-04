@@ -11,10 +11,10 @@ import './AppLayout.css';
 
 const { Sider, Content } = Layout;
 
-function AppLayout() {
+function AppLayout(props) {
   return (
     <Layout>
-      <AppHeader></AppHeader>
+      <AppHeader {...props}></AppHeader>
       <Layout>
         <Sider
           className='hide-on-small'
@@ -24,7 +24,7 @@ function AppLayout() {
             backgroundColor: 'white',
           }}
         >
-          <AppLeftSider></AppLeftSider>
+          <AppLeftSider {...props}></AppLeftSider>
         </Sider>
         <Content
           style={{
@@ -42,8 +42,11 @@ function AppLayout() {
             <Col span={21} offset={1} style={{ backgroundColor: 'white' }}>
               <Outlet />
             </Col>
-            <Col span={2}>
-              <ActionButtonColumn></ActionButtonColumn>
+            <Col
+              span={2}
+              // style={{ position: 'relative' }}
+            >
+              <ActionButtonColumn {...props}></ActionButtonColumn>
             </Col>
           </Row>
         </Content>

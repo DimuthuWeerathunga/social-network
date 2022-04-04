@@ -35,35 +35,8 @@ const ThreadContent = () => {
           provident magnam nesciunt eos quae blanditiis dolore dolor, veniam
           sapiente, voluptas sequi adipisci quisquam consequatur odit, eveniet
           cumque. Non a at similique nobis suscipit! Tempora repellendus iusto
-          animi, enim, magni eius quas nihil dolorem praesentium tenetur
-          similique qui excepturi optio unde ipsam, provident id laudantium ab.
-          Tenetur odio nihil ad architecto earum temporibus est ut? Iste, quam
-          totam. Vitae amet provident, aspernatur dolorum eos obcaecati magnam
-          harum molestias cupiditate asperiores ipsam blanditiis quisquam. Porro
-          voluptates fuga sit culpa similique cupiditate iure cumque enim at!
-          Laudantium ut nobis, quam totam commodi reprehenderit, velit
-          repudiandae eius sed, ducimus quasi blanditiis dolorum odit soluta at
-          similique fuga! Dignissimos exercitationem beatae hic ipsum architecto
-          ex officia in. Consequatur nemo voluptatibus tempore totam sit
-          recusandae animi beatae natus, laboriosam necessitatibus ad
-          perspiciatis reprehenderit tenetur quo placeat aspernatur voluptates
-          nostrum? Tempore reiciendis dolorum consequatur quis labore excepturi
-          maiores ad alias inventore sint dolores odio iusto earum sunt iste
-          ipsa doloremque fugit accusamus, quod modi quae. Blanditiis numquam
-          animi nostrum deserunt adipisci ea, quaerat, magnam placeat velit
-          corporis error iure voluptate porro enim, nam architecto optio cumque?
-          Eum, sequi? Hic optio, id, cum architecto ipsam perspiciatis provident
-          voluptas dolorum omnis maiores corrupti commodi fugiat officiis
-          delectus dolor excepturi minus quod dolores. Odio, blanditiis illo
-          consequatur vitae temporibus exercitationem nesciunt provident libero
-          possimus earum doloremque est iusto molestiae architecto praesentium
-          cum voluptatem iure accusantium nihil. Adipisci repellat laborum, quis
-          odit doloremque quisquam quasi quaerat ab reprehenderit hic, error
-          pariatur velit non a nisi consequatur rerum voluptatibus aliquam earum
-          placeat quam deserunt. Earum unde nulla nihil qui ad debitis aperiam
-          expedita aut voluptas dignissimos aliquid, itaque at consectetur animi
-          repellat aspernatur illo!
         </p>
+        <hr />
       </Col>
     </Row>
   );

@@ -1,15 +1,70 @@
-import React from 'react';
-import { Comment, Avatar } from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Comment, Avatar, Button } from 'antd';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 
 import IconText from '../../shared/IconText';
 import commentsList from './CommentListData';
+import ReplyEditor from './ReplyEditor';
 
-function CommentNode({ commentNodeId, content }) {
+import './CommentNode.css';
+
+function CommentNode({ commentId, content }) {
+  const [childComments, setChildComments] = useState([]);
+  const [showReplyBox, setShowReplyBox] = useState(false);
+  const [replyBoxContent, setReplyBoxContent] = useState('');
+  const [submittingReply, setSubmittingReply] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setChildComments(
+        commentsList.filter((comment) => comment.parentId === commentId)
+      );
+    }, 2000);
+  }, [commentId]);
+
+  function onReplyToClicked() {
+    setShowReplyBox((prevShowReplyBox) => !prevShowReplyBox);
+  }
+
+  function onReplyBoxContentChange(event) {
+    setReplyBoxContent(event.target.value);
+  }
+
+  function onReplySubmit() {
+    if (!replyBoxContent) {
+      console.log('empty comments are not allowed');
+      return;
+    }
+    setSubmittingReply(true);
+
+    const newComment = {
+      parentId: commentId,
+      commentId: 'somethingUnique',
+      content: replyBoxContent,
+    };
+
+    setTimeout(() => {
+      commentsList.push(newComment);
+      setChildComments((prevChildComments) => {
+        prevChildComments.unshift(newComment);
+        return prevChildComments;
+      });
+      setSubmittingReply(false);
+      setShowReplyBox(false);
+    }, 2000);
+  }
+
   return (
     <Comment
       actions={[
-        <span key='comment-nested-reply-to'>Reply to</span>,
+        <Button
+          size='small'
+          style={{ marginRight: '.5rem' }}
+          key='comment-nested-reply-to'
+          onClick={onReplyToClicked}
+        >
+          Reply to
+        </Button>,
         <IconText
           icon={LikeOutlined}
           text='156'
@@ -17,6 +72,7 @@ function CommentNode({ commentNodeId, content }) {
           haveButton
           type='primary'
           size='small'
+          style={{ marginRight: '.5rem' }}
         />,
         <IconText
           icon={DislikeOutlined}
@@ -28,21 +84,26 @@ function CommentNode({ commentNodeId, content }) {
           size='small'
         />,
       ]}
-      author={<a>Han Solo</a>}
+      author={<span>Han Solo</span>}
       avatar={
         <Avatar src='https://joeschmoe.io/api/v1/random' alt='Han Solo' />
       }
       content={<p>{content}</p>}
     >
-      {commentsList
-        .filter((comment) => comment.parentId === commentNodeId)
-        .map((comment) => (
-          <CommentNode
-            key={comment.commentNodeId}
-            commentNodeId={comment.commentNodeId}
-            content={comment.content}
-          />
-        ))}
+      {showReplyBox && (
+        <ReplyEditor
+          onChange={onReplyBoxContentChange}
+          onSubmit={onReplySubmit}
+          submitting={submittingReply}
+        />
+      )}
+      {childComments.map((comment) => (
+        <CommentNode
+          key={comment.commentId}
+          commentId={comment.commentId}
+          content={comment.content}
+        />
+      ))}
     </Comment>
   );
 }

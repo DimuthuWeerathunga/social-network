@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { List, Avatar, Pagination } from 'antd';
 import {
   MessageOutlined,
@@ -13,7 +14,7 @@ import './ThreadList.css';
 const listData = [];
 for (let i = 0; i < 10; i++) {
   listData.push({
-    href: 'https://ant.design',
+    to: '/categories/thread',
     title: `ant design part ${i + 1}`,
     avatar: 'https://joeschmoe.io/api/v1/random',
     description: (
@@ -70,7 +71,7 @@ function ThreadList() {
           >
             <List.Item.Meta
               avatar={<Avatar src={item.avatar} />}
-              title={<a href={item.href}>{item.title}</a>}
+              title={<Link to={item.to}>{item.title}</Link>}
               description={item.description}
             />
             {item.content}

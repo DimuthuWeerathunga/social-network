@@ -1,21 +1,20 @@
 import React from 'react';
 import { PlusCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
-import { Row } from 'antd';
+import { Col } from 'antd';
 
 import ActionButton from './ActionButton';
 
-function ActionButtonColumn() {
+import './ActionButtonColumn.css';
+
+function ActionButtonColumn({
+  currentlyActiveNav,
+  setCurrentlyActiveNav,
+  handleNavClick,
+}) {
   return (
-    <Row
-      style={{
-        position: 'fixed',
-        flexDirection: 'column',
-        bottom: '1vh',
-        marginLeft: '.4em',
-      }}
-    >
+    <Col className='action-button-column'>
       <ActionButton
-        menuOptions={[{ link: '/', text: 'Add a new thread' }]}
+        menuOptions={[{ link: '/newThread', text: 'Add a new thread' }]}
         icon={<PlusCircleOutlined />}
       ></ActionButton>
       <ActionButton
@@ -26,7 +25,7 @@ function ActionButtonColumn() {
         menuOptions={[{ link: '/', text: 'Add a new thread' }]}
         icon={<PlusCircleOutlined />}
       ></ActionButton>
-    </Row>
+    </Col>
   );
 }
 

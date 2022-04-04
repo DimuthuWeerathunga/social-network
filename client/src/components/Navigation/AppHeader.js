@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Menu, Row, Col } from 'antd';
 import {
   UnorderedListOutlined,
@@ -19,23 +19,18 @@ const { Search } = Input;
 
 // const { SubMenu } = Menu;
 
-function AppHeader() {
-  const [current, setCurrent] = useState('new');
-
+function AppHeader({
+  handleNavClick,
+  currentlyActiveNav,
+  setCurrentlyActiveNav,
+}) {
   const onSearch = (value) => console.log(value);
-
-  const handleClick = (e) => {
-    console.log('click ', e);
-    setCurrent(e.key);
-  };
 
   return (
     <>
       <Header
         style={{
           backgroundColor: 'white',
-          // display: 'flex',
-          // justifyContent: 'space-around',
         }}
       >
         <Row>
@@ -67,8 +62,8 @@ function AppHeader() {
           >
             <Menu
               style={{ width: '100%' }}
-              onClick={handleClick}
-              selectedKeys={[current]}
+              onClick={handleNavClick}
+              selectedKeys={[currentlyActiveNav]}
               mode='horizontal'
             >
               <Menu.Item key='login' icon={<LoginOutlined />}>
@@ -90,8 +85,8 @@ function AppHeader() {
       >
         <Menu
           style={{ width: '100%' }}
-          onClick={handleClick}
-          selectedKeys={[current]}
+          onClick={handleNavClick}
+          selectedKeys={[currentlyActiveNav]}
           mode='horizontal'
           theme='light'
         >

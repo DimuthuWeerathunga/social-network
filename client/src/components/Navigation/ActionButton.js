@@ -3,7 +3,7 @@ import { Menu, Dropdown, Button, Row } from 'antd';
 
 import { Link } from 'react-router-dom';
 
-function ActionButton({ icon, menuOptions }) {
+function ActionButton({ icon, menuOptions, onClick }) {
   const menu = (
     <Menu>
       {menuOptions.map((menuOption) => (
@@ -23,6 +23,7 @@ function ActionButton({ icon, menuOptions }) {
           shape='circle'
           size='large'
           icon={icon}
+          onClick={onClick}
         ></Button>
       </Dropdown>
     </Row>
