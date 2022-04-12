@@ -1,11 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { PageHeader, Menu, Row, Button } from 'antd';
-import { MoreOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { PageHeader } from 'antd';
+
+import { Link, useParams } from 'react-router-dom';
 import ThreadContent from '../components/threads/ThreadContent';
 import CommentsSection from '../components/threads/comments/CommentsSection';
 
 function ThreadPage() {
+  const { threadId } = useParams();
+  console.log(threadId);
+
   const routes = [
     {
       path: '',
@@ -21,8 +24,6 @@ function ThreadPage() {
     },
   ];
 
-  console.log('parent re render');
-
   return (
     <>
       <PageHeader
@@ -34,7 +35,6 @@ function ThreadPage() {
         breadcrumb={{
           routes,
           itemRender: function itemRender(route, params, routes, paths) {
-            console.log(paths);
             const last = routes.indexOf(route) === routes.length - 1;
             return last ? (
               <span>{route.breadcrumbName}</span>

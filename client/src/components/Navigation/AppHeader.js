@@ -1,5 +1,7 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Menu, Row, Col } from 'antd';
+import { Layout, Input } from 'antd';
 import {
   UnorderedListOutlined,
   RiseOutlined,
@@ -7,8 +9,10 @@ import {
   DribbbleOutlined,
   LoginOutlined,
   UserAddOutlined,
+  HomeOutlined,
 } from '@ant-design/icons';
-import { Layout, Input } from 'antd';
+
+import { NavigationContext } from '../../context/navigation-context';
 
 const {
   Header,
@@ -19,11 +23,9 @@ const { Search } = Input;
 
 // const { SubMenu } = Menu;
 
-function AppHeader({
-  handleNavClick,
-  currentlyActiveNav,
-  setCurrentlyActiveNav,
-}) {
+function AppHeader() {
+  const navigation = useContext(NavigationContext);
+
   const onSearch = (value) => console.log(value);
 
   return (
@@ -62,8 +64,8 @@ function AppHeader({
           >
             <Menu
               style={{ width: '100%' }}
-              onClick={handleNavClick}
-              selectedKeys={[currentlyActiveNav]}
+              onClick={navigation.handleNavClick}
+              selectedKeys={[navigation.currentlyActiveNav]}
               mode='horizontal'
             >
               <Menu.Item key='login' icon={<LoginOutlined />}>
@@ -85,23 +87,26 @@ function AppHeader({
       >
         <Menu
           style={{ width: '100%' }}
-          onClick={handleNavClick}
-          selectedKeys={[currentlyActiveNav]}
+          onClick={navigation.handleNavClick}
+          selectedKeys={[navigation.currentlyActiveNav]}
           mode='horizontal'
           theme='light'
         >
           <Menu.Item
-            key='trending'
-            icon={<RiseOutlined />}
+            key='home'
+            icon={<HomeOutlined />}
             style={{ marginLeft: 'auto' }}
           >
+            HOME
+          </Menu.Item>
+          <Menu.Item key='trending' icon={<RiseOutlined />}>
             TRENDING
           </Menu.Item>
           <Menu.Item key='new' icon={<CaretUpOutlined />}>
             NEW
           </Menu.Item>
-          <Menu.Item key='categories' icon={<UnorderedListOutlined />}>
-            CATEGORIES
+          <Menu.Item key='topics' icon={<UnorderedListOutlined />}>
+            Explore Topics
           </Menu.Item>
           <Menu.Item
             key='free-ads'

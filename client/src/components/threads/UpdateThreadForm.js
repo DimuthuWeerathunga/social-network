@@ -107,6 +107,20 @@ const UpdateThreadForm = () => {
         </Form.Item>
 
         <Form.Item
+          name='topic'
+          label='Topic of Discussion'
+          hasFeedback
+          rules={[
+            {
+              required: true,
+              message: 'Please enter a topic!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+        <Form.Item
           name='content'
           label='Content'
           rules={[

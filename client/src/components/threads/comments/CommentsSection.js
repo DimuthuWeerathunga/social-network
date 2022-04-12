@@ -8,11 +8,14 @@ function CommentsSection({ parentPostId }) {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
+    let commentTimout = setTimeout(() => {
       setComments(
         commentsList.filter((comment) => comment.parentId === parentPostId)
       );
     }, 2000);
+    return () => {
+      clearTimeout(commentTimout);
+    };
   }, [parentPostId]);
 
   return (

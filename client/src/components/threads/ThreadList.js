@@ -11,24 +11,7 @@ import IconText from '../shared/IconText';
 
 import './ThreadList.css';
 
-const listData = [];
-for (let i = 0; i < 10; i++) {
-  listData.push({
-    to: '/categories/thread',
-    title: `ant design part ${i + 1}`,
-    avatar: 'https://joeschmoe.io/api/v1/random',
-    description: (
-      <div>
-        We supply a series of design principles, practical patterns and high
-        quality
-      </div>
-    ),
-    content:
-      'We supply a series of design principles, practical patterns and high quality design resources (Sketch and Axure), to help people create their product prototypes beautifully and efficiently.',
-  });
-}
-
-function ThreadList() {
+function ThreadList({ listData }) {
   return (
     <>
       <List
@@ -46,6 +29,7 @@ function ThreadList() {
                 key='list-vertical-like-o'
                 haveButton
                 type='primary'
+                size='small'
               />,
               <IconText
                 icon={DislikeOutlined}
@@ -53,6 +37,7 @@ function ThreadList() {
                 key='list-vertical-dislike-o'
                 haveButton
                 type='danger'
+                size='small'
                 ghost
               />,
               <IconText

@@ -2,7 +2,6 @@ import { Col, Row } from 'antd';
 import React from 'react';
 
 const ThreadContent = () => {
-  console.log('child rerender');
   return (
     <Row>
       <Col span={22} offset={1}>

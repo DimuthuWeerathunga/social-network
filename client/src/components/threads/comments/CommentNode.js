@@ -15,11 +15,14 @@ function CommentNode({ commentId, content }) {
   const [submittingReply, setSubmittingReply] = useState(false);
 
   useEffect(() => {
-    setTimeout(() => {
+    let commentTimout = setTimeout(() => {
       setChildComments(
         commentsList.filter((comment) => comment.parentId === commentId)
       );
     }, 2000);
+    return () => {
+      clearTimeout(commentTimout);
+    };
   }, [commentId]);
 
   function onReplyToClicked() {

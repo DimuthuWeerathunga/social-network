@@ -4,17 +4,16 @@ import { Outlet } from 'react-router-dom';
 
 import AppHeader from '../components/Navigation/AppHeader';
 import AppLeftSider from '../components/sider/AppLeftSider';
-
 import ActionButtonColumn from '../components/Navigation/ActionButtonColumn';
 
 import './AppLayout.css';
 
 const { Sider, Content } = Layout;
 
-function AppLayout(props) {
+function AppLayout() {
   return (
     <Layout>
-      <AppHeader {...props}></AppHeader>
+      <AppHeader></AppHeader>
       <Layout>
         <Sider
           className='hide-on-small'
@@ -24,7 +23,7 @@ function AppLayout(props) {
             backgroundColor: 'white',
           }}
         >
-          <AppLeftSider {...props}></AppLeftSider>
+          <AppLeftSider></AppLeftSider>
         </Sider>
         <Content
           style={{
@@ -46,7 +45,7 @@ function AppLayout(props) {
               span={2}
               // style={{ position: 'relative' }}
             >
-              <ActionButtonColumn {...props}></ActionButtonColumn>
+              <ActionButtonColumn></ActionButtonColumn>
             </Col>
           </Row>
         </Content>

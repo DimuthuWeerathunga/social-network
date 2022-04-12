@@ -6,15 +6,13 @@ import ActionButton from './ActionButton';
 
 import './ActionButtonColumn.css';
 
-function ActionButtonColumn({
-  currentlyActiveNav,
-  setCurrentlyActiveNav,
-  handleNavClick,
-}) {
+function ActionButtonColumn() {
   return (
     <Col className='action-button-column'>
       <ActionButton
-        menuOptions={[{ link: '/newThread', text: 'Add a new thread' }]}
+        menuOptions={[
+          { link: '/categories/new-thread', text: 'Add a new thread' },
+        ]}
         icon={<PlusCircleOutlined />}
       ></ActionButton>
       <ActionButton
