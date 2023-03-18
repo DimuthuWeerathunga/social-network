@@ -18,7 +18,7 @@ function AppLayout() {
         <Sider
           className='hide-on-small'
           style={{
-            overflow: 'scroll',
+            overflow: 'auto',
             height: '80vh',
             backgroundColor: 'white',
           }}
@@ -27,7 +27,7 @@ function AppLayout() {
         </Sider>
         <Content
           style={{
-            overflow: 'scroll',
+            overflow: 'auto',
             height: '80vh',
           }}
         >
