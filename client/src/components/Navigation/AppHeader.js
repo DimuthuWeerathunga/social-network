@@ -13,6 +13,7 @@ import {
 } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
+import { PrimaryBGColor, TertiaryBGColor } from '../../global-settings/colors';
 
 const {
   Header,
@@ -32,7 +33,7 @@ function AppHeader() {
     <>
       <Header
         style={{
-          backgroundColor: 'white',
+          backgroundColor: PrimaryBGColor,
         }}
       >
         <Row>
@@ -51,7 +52,9 @@ function AppHeader() {
               enterButton='Search'
               size='large'
               onSearch={onSearch}
-              style={{ width: '100%' }}
+              style={{
+                backgroundColor: TertiaryBGColor,
+              }}
             />
           </Col>
           <Col
@@ -63,7 +66,7 @@ function AppHeader() {
             }}
           >
             <Menu
-              style={{ width: '100%' }}
+              style={{ width: '100%', backgroundColor: PrimaryBGColor }}
               onClick={navigation.handleNavClick}
               selectedKeys={[navigation.currentlyActiveNav]}
               mode='horizontal'
@@ -80,13 +83,13 @@ function AppHeader() {
       </Header>
       <Header
         style={{
-          backgroundColor: 'white',
+          backgroundColor: PrimaryBGColor,
           display: 'flex',
           justifyContent: 'center',
         }}
       >
         <Menu
-          style={{ width: '100%' }}
+          style={{ width: '100%', backgroundColor: PrimaryBGColor }}
           onClick={navigation.handleNavClick}
           selectedKeys={[navigation.currentlyActiveNav]}
           mode='horizontal'

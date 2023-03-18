@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
 
 import { NavigationContext } from './context/navigation-context';
 import AppLayout from './layout/AppLayout';
@@ -12,6 +13,7 @@ import AddNewThreadPage from './pages/AddNewThreadPage';
 import './App.css';
 import ExploreFriendsPage from './pages/ExploreFriendsPage';
 import ExploreTopicsPage from './pages/ExploreTopicsPage';
+import { PrimaryColor, PrimaryTextColor } from './global-settings/colors';
 
 function App() {
   const [currentlyActiveNav, setCurrentlyActiveNav] = useState('new');
@@ -54,23 +56,32 @@ function App() {
 
   return (
     <NavigationContext.Provider value={{ currentlyActiveNav, handleNavClick }}>
-      <Routes>
-        <Route path='/' element={<AppLayout />}>
-          <Route path='' element={<NewThreadsPage />}></Route>
-          <Route path='topics' element={<ExploreTopicsPage />}></Route>
-          <Route
-            path='categories/thread/:threadId'
-            element={<ThreadPage />}
-          ></Route>
-          <Route
-            path='categories/new-thread'
-            element={<AddNewThreadPage />}
-          ></Route>
-          <Route path='people' element={<ExploreFriendsPage />}></Route>
-        </Route>
-        <Route path='login' element={<LoginPage />}></Route>
-        <Route path='signup' element={<SignUpPage />} />
-      </Routes>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: PrimaryColor,
+            colorText: PrimaryTextColor,
+          },
+        }}
+      >
+        <Routes>
+          <Route path='/' element={<AppLayout />}>
+            <Route path='' element={<NewThreadsPage />}></Route>
+            <Route path='topics' element={<ExploreTopicsPage />}></Route>
+            <Route
+              path='categories/thread/:threadId'
+              element={<ThreadPage />}
+            ></Route>
+            <Route
+              path='categories/new-thread'
+              element={<AddNewThreadPage />}
+            ></Route>
+            <Route path='people' element={<ExploreFriendsPage />}></Route>
+          </Route>
+          <Route path='login' element={<LoginPage />}></Route>
+          <Route path='signup' element={<SignUpPage />} />
+        </Routes>
+      </ConfigProvider>
     </NavigationContext.Provider>
   );
 }

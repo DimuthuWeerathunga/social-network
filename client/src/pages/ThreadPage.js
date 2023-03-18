@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageHeader } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 
 import { Link, useParams } from 'react-router-dom';
 import ThreadContent from '../components/threads/ThreadContent';

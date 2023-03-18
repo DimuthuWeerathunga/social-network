@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Comment, Avatar, Button } from 'antd';
+import { Avatar, Button } from 'antd';
+import { Comment } from '@ant-design/compatible';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 
 import IconText from '../../shared/IconText';

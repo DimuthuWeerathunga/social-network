@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Col, Row } from 'antd';
-import { PageHeader } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 
 import UpdateThreadForm from '../components/threads/UpdateThreadForm';
 
