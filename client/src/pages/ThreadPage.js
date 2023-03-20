@@ -4,6 +4,7 @@ import { PageHeader } from '@ant-design/pro-layout';
 import { Link, useParams } from 'react-router-dom';
 import ThreadContent from '../components/threads/ThreadContent';
 import CommentsSection from '../components/threads/comments/CommentsSection';
+import { PrimaryTextColor } from '../global-settings/colors';
 
 function ThreadPage() {
   const { threadId } = useParams();
@@ -27,7 +28,11 @@ function ThreadPage() {
   return (
     <>
       <PageHeader
-        title='This is the thread title this should be long and handsome'
+        title={
+          <h2 style={{ color: PrimaryTextColor }}>
+            This is the thread title this should be long and handsome
+          </h2>
+        }
         className='thread-page-header'
         avatar={{
           src: 'https://avatars1.githubusercontent.com/u/8186664?s=460&v=4',

@@ -3,10 +3,11 @@ import { Col } from 'antd';
 
 import AppHeader from '../components/Navigation/AppHeader';
 import SignUpForm from '../components/auth/SignUpForm';
+import { SecondaryBGColor } from '../global-settings/colors';
 
 function SignUpPage(props) {
   return (
-    <>
+    <div style={{ backgroundColor: SecondaryBGColor, minHeight: '100vh' }}>
       <AppHeader {...props} />
       <Col
         span={12}
@@ -15,7 +16,7 @@ function SignUpPage(props) {
       >
         <SignUpForm></SignUpForm>
       </Col>
-    </>
+    </div>
   );
 }
 

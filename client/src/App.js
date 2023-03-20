@@ -61,6 +61,7 @@ function App() {
           token: {
             colorPrimary: PrimaryColor,
             colorText: PrimaryTextColor,
+            colorTextHeading: PrimaryColor,
           },
         }}
       >

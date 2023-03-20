@@ -2,6 +2,7 @@ import React from 'react';
 import { Col } from 'antd';
 import LoginForm from '../components/auth/LoginForm';
 import AppHeader from '../components/Navigation/AppHeader';
+import { SecondaryBGColor } from '../global-settings/colors';
 
 function LoginPage({
   currentlyActiveNav,
@@ -9,7 +10,12 @@ function LoginPage({
   handleNavClick,
 }) {
   return (
-    <>
+    <div
+      style={{
+        backgroundColor: SecondaryBGColor,
+        minHeight: '100vh',
+      }}
+    >
       <AppHeader
         currentlyActiveNav={currentlyActiveNav}
         setCurrentlyActiveNav={setCurrentlyActiveNav}
@@ -18,7 +24,7 @@ function LoginPage({
       <Col span={12} offset={6} style={{ marginTop: '4rem' }}>
         <LoginForm />
       </Col>
-    </>
+    </div>
   );
 }
 

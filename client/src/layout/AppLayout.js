@@ -9,7 +9,6 @@ import {
   PrimaryBGColor,
   PrimaryTextColor,
   SecondaryBGColor,
-  TertiaryBGColor,
 } from '../global-settings/colors';
 
 import './AppLayout.css';
@@ -23,6 +22,7 @@ function AppLayout() {
         backgroundColor: PrimaryBGColor,
         fontWeight: 600,
         color: PrimaryTextColor,
+        minHeight: '100vh',
       }}
     >
       <AppHeader></AppHeader>
@@ -45,7 +45,7 @@ function AppLayout() {
           style={{
             overflow: 'auto',
             backgroundColor: SecondaryBGColor,
-            height: '80vh',
+            maxHeight: '87vh',
             borderRadius: '2rem',
           }}
         >
