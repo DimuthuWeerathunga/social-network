@@ -16,11 +16,11 @@ function LoginPage({
         minHeight: '100vh',
       }}
     >
-      <AppHeader
+      {/* <AppHeader
         currentlyActiveNav={currentlyActiveNav}
         setCurrentlyActiveNav={setCurrentlyActiveNav}
         handleNavClick={handleNavClick}
-      />
+      /> */}
       <Col span={12} offset={6} style={{ marginTop: '4rem' }}>
         <LoginForm />
       </Col>
