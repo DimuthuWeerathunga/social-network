@@ -8,7 +8,7 @@ import { SecondaryBGColor } from '../global-settings/colors';
 function SignUpPage(props) {
   return (
     <div style={{ backgroundColor: SecondaryBGColor, minHeight: '100vh' }}>
-      <AppHeader {...props} />
+      {/* <AppHeader {...props} /> */}
       <Col
         span={12}
         offset={4}

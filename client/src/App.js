@@ -78,9 +78,9 @@ function App() {
               element={<AddNewThreadPage />}
             ></Route>
             <Route path='people' element={<ExploreFriendsPage />}></Route>
+            <Route path='login' element={<LoginPage />}></Route>
+            <Route path='signup' element={<SignUpPage />} />
           </Route>
-          <Route path='login' element={<LoginPage />}></Route>
-          <Route path='signup' element={<SignUpPage />} />
         </Routes>
       </ConfigProvider>
     </NavigationContext.Provider>
