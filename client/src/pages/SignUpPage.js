@@ -1,18 +1,16 @@
-import React from 'react';
-import { Col } from 'antd';
+import React from "react";
+import { Col } from "antd";
 
-import AppHeader from '../components/Navigation/AppHeader';
-import SignUpForm from '../components/auth/SignUpForm';
-import { SecondaryBGColor } from '../global-settings/colors';
+import SignUpForm from "../components/auth/SignUpForm";
+import { SECONDARY_BG_COLOR } from "../global-settings/colors";
 
-function SignUpPage(props) {
+function SignUpPage() {
   return (
-    <div style={{ backgroundColor: SecondaryBGColor, minHeight: '100vh' }}>
-      {/* <AppHeader {...props} /> */}
+    <div style={{ backgroundColor: SECONDARY_BG_COLOR }}>
       <Col
         span={12}
         offset={4}
-        style={{ marginTop: '4rem', paddingBottom: '4rem' }}
+        style={{ marginTop: "4rem", paddingBottom: "4rem" }}
       >
         <SignUpForm></SignUpForm>
       </Col>

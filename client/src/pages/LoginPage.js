@@ -1,28 +1,17 @@
 import React from 'react';
-import { Col } from 'antd';
+import {Col} from 'antd';
 import LoginForm from '../components/auth/LoginForm';
-import AppHeader from '../components/Navigation/AppHeader';
-import { SecondaryBGColor } from '../global-settings/colors';
+import {SECONDARY_BG_COLOR} from '../global-settings/colors';
 
-function LoginPage({
-  currentlyActiveNav,
-  setCurrentlyActiveNav,
-  handleNavClick,
-}) {
+function LoginPage() {
   return (
     <div
       style={{
-        backgroundColor: SecondaryBGColor,
-        minHeight: '100vh',
+        backgroundColor: SECONDARY_BG_COLOR,
       }}
     >
-      {/* <AppHeader
-        currentlyActiveNav={currentlyActiveNav}
-        setCurrentlyActiveNav={setCurrentlyActiveNav}
-        handleNavClick={handleNavClick}
-      /> */}
-      <Col span={12} offset={6} style={{ marginTop: '4rem' }}>
-        <LoginForm />
+      <Col span={12} offset={6} style={{marginTop: '4rem'}}>
+        <LoginForm/>
       </Col>
     </div>
   );

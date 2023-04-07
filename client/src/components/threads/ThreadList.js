@@ -11,29 +11,29 @@ import IconText from '../shared/IconText';
 
 import './ThreadList.css';
 import {
-  PrimaryBGColor,
-  SecondaryBGColor,
-  TertiaryBGColor,
+  PRIMARY_BG_COLOR,
+  SECONDARY_BG_COLOR,
+  TERTIARY_BG_COLOR,
 } from '../../global-settings/colors';
 
 function ThreadList({ listData }) {
   const [currentPage, setCurrentPage] = useState(1);
   return (
-    <div style={{ backgroundColor: SecondaryBGColor }}>
+    <div style={{ backgroundColor: SECONDARY_BG_COLOR }}>
       <List
         itemLayout='vertical'
         size='large'
         pagination={false}
         dataSource={listData}
         style={{
-          backgroundColor: SecondaryBGColor,
+          backgroundColor: SECONDARY_BG_COLOR,
         }}
         renderItem={(item) => (
           <List.Item
             key={item.title}
             style={{
               borderRadius: '2rem',
-              backgroundColor: PrimaryBGColor,
+              backgroundColor: PRIMARY_BG_COLOR,
               marginBottom: '1rem',
             }}
             actions={[
@@ -96,7 +96,7 @@ function ThreadList({ listData }) {
             return (
               <div
                 style={{
-                  backgroundColor: TertiaryBGColor,
+                  backgroundColor: TERTIARY_BG_COLOR,
                   borderRadius: '.4rem',
                 }}
               >

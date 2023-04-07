@@ -3,7 +3,7 @@ import { Menu } from 'antd';
 import { UsergroupAddOutlined } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
-import { PrimaryBGColor } from '../../global-settings/colors';
+import { PRIMARY_BG_COLOR } from '../../global-settings/colors';
 
 function AppLeftSider() {
   const navigation = useContext(NavigationContext);
@@ -14,7 +14,7 @@ function AppLeftSider() {
       mode='inline'
       selectedKeys={[navigation.currentlyActiveNav]}
       onClick={navigation.handleNavClick}
-      style={{ marginTop: '2rem', backgroundColor: PrimaryBGColor }}
+      style={{ marginTop: '2rem', backgroundColor: PRIMARY_BG_COLOR }}
     >
       <Menu.Item key='profile' icon={<UsergroupAddOutlined />}>
         Profile

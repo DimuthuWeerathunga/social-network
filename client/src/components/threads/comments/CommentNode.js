@@ -8,7 +8,7 @@ import commentsList from './CommentListData';
 import ReplyEditor from './ReplyEditor';
 
 import './CommentNode.css';
-import { SecondaryBGColor } from '../../../global-settings/colors';
+import { SECONDARY_BG_COLOR } from '../../../global-settings/colors';
 
 function CommentNode({ commentId, content }) {
   const [childComments, setChildComments] = useState([]);
@@ -61,7 +61,7 @@ function CommentNode({ commentId, content }) {
 
   return (
     <Comment
-      style={{ backgroundColor: SecondaryBGColor }}
+      style={{ backgroundColor: SECONDARY_BG_COLOR }}
       actions={[
         <Button
           size='small'

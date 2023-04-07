@@ -6,9 +6,9 @@ import AppHeader from '../components/Navigation/AppHeader';
 import AppLeftSider from '../components/sider/AppLeftSider';
 import ActionButtonColumn from '../components/Navigation/ActionButtonColumn';
 import {
-  PrimaryBGColor,
-  PrimaryTextColor,
-  SecondaryBGColor,
+  PRIMARY_BG_COLOR,
+  PRIMARY_TEXT_COLOR,
+  SECONDARY_BG_COLOR,
 } from '../global-settings/colors';
 
 import './AppLayout.css';
@@ -19,16 +19,16 @@ function AppLayout() {
   return (
     <Layout
       style={{
-        backgroundColor: PrimaryBGColor,
+        backgroundColor: PRIMARY_BG_COLOR,
         fontWeight: 600,
-        color: PrimaryTextColor,
+        color: PRIMARY_TEXT_COLOR,
         minHeight: '100vh',
       }}
     >
       <AppHeader></AppHeader>
       <Layout
         style={{
-          backgroundColor: PrimaryBGColor,
+          backgroundColor: PRIMARY_BG_COLOR,
         }}
       >
         <Sider
@@ -36,7 +36,7 @@ function AppLayout() {
           style={{
             overflow: 'auto',
             height: '80vh',
-            backgroundColor: PrimaryBGColor,
+            backgroundColor: PRIMARY_BG_COLOR,
           }}
         >
           <AppLeftSider></AppLeftSider>
@@ -44,7 +44,7 @@ function AppLayout() {
         <Content
           style={{
             overflow: 'auto',
-            backgroundColor: SecondaryBGColor,
+            backgroundColor: SECONDARY_BG_COLOR,
             maxHeight: '87vh',
             borderRadius: '2rem',
           }}
@@ -60,7 +60,7 @@ function AppLayout() {
               span={21}
               offset={1}
               style={{
-                backgroundColor: SecondaryBGColor,
+                backgroundColor: SECONDARY_BG_COLOR,
                 borderRadius: '2rem',
               }}
             >
@@ -77,7 +77,7 @@ function AppLayout() {
         <Sider
           className='hide-on-small'
           style={{
-            backgroundColor: PrimaryBGColor,
+            backgroundColor: PRIMARY_BG_COLOR,
           }}
         >
           {/* right sidebar */}
