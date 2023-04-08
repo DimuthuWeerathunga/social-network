@@ -16,12 +16,12 @@ function ActionButton({ icon, menuOptions, onClick }) {
 
   return (
     <Row style={{ marginTop: '1.5rem' }}>
-      <Dropdown overlay={menu} placement='topRight' arrow>
+      <Dropdown overlay={menu} placement="topRight" arrow>
         <Button
           style={{ boxShadow: '2px 8px 10px #AAA' }}
-          type='primary'
-          shape='circle'
-          size='large'
+          type="primary"
+          shape="circle"
+          size="large"
           icon={icon}
           onClick={onClick}
         ></Button>

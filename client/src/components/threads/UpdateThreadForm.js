@@ -1,7 +1,7 @@
-import React from 'react';
-import { useState } from 'react';
-import { Form, Button, Upload, Input, Modal } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import React from "react";
+import { useState } from "react";
+import { Form, Button, Upload, Input, Modal } from "antd";
+import { PlusOutlined } from "@ant-design/icons";
 
 const formItemLayout = {
   labelCol: {
@@ -33,8 +33,8 @@ function getBase64(file) {
 
 const UpdateThreadForm = () => {
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewImage, setPreviewImage] = useState('');
-  const [previewTitle, setPreviewTitle] = useState('');
+  const [previewImage, setPreviewImage] = useState("");
+  const [previewTitle, setPreviewTitle] = useState("");
   const [fileList, setFileList] = useState([]);
 
   async function handlePreview(file) {
@@ -44,7 +44,7 @@ const UpdateThreadForm = () => {
     setPreviewImage(file.url || file.preview);
     setPreviewVisible(true);
     setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf('/') + 1)
+      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
     );
   }
 
@@ -57,17 +57,17 @@ const UpdateThreadForm = () => {
   }
 
   function beforeUpload(file, fileList) {
-    if (file.type === 'image/jpeg' || file.type === 'image/png') {
+    if (file.type === "image/jpeg" || file.type === "image/png") {
       return true;
     } else {
-      console.log('You cant uploald files other than jpeg');
+      console.log("You cant uploald files other than jpeg");
       console.log(fileList);
       return Upload.LIST_IGNORE;
     }
   }
 
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    console.log("Received values of form: ", values);
   };
 
   const uploadButton = (
@@ -87,19 +87,19 @@ const UpdateThreadForm = () => {
         {...formItemLayout}
         onFinish={onFinish}
         initialValues={{
-          'input-number': 3,
-          'checkbox-group': ['A', 'B'],
+          "input-number": 3,
+          "checkbox-group": ["A", "B"],
           rate: 3.5,
         }}
       >
         <Form.Item
-          name='title'
-          label='Title'
+          name="title"
+          label="Title"
           hasFeedback
           rules={[
             {
               required: true,
-              message: 'Please enter the title of the thread!',
+              message: "Please enter the title of the thread!",
             },
           ]}
         >
@@ -107,13 +107,13 @@ const UpdateThreadForm = () => {
         </Form.Item>
 
         <Form.Item
-          name='topic'
-          label='Topic of Discussion'
+          name="topic"
+          label="Topic of Discussion"
           hasFeedback
           rules={[
             {
               required: true,
-              message: 'Please enter a topic!',
+              message: "Please enter a topic!",
             },
           ]}
         >
@@ -121,12 +121,12 @@ const UpdateThreadForm = () => {
         </Form.Item>
 
         <Form.Item
-          name='content'
-          label='Content'
+          name="content"
+          label="Content"
           rules={[
             {
               required: true,
-              message: 'Please enter your post content!',
+              message: "Please enter your post content!",
             },
           ]}
         >
@@ -134,21 +134,21 @@ const UpdateThreadForm = () => {
         </Form.Item>
 
         <Form.Item
-          name='images'
-          label='Upload pictures'
-          valuePropName='fileList'
+          name="images"
+          label="Upload pictures"
+          valuePropName="fileList"
           getValueFromEvent={normFile}
         >
           <Upload
-            name='images'
+            name="images"
             beforeUpload={beforeUpload}
             customRequest={({ onSuccess }) => {
-              console.log('Custome request handled');
+              console.log("Custome request handled");
               onSuccess();
               // console.log(fileList);
             }}
             fileList={fileList}
-            listType='picture-card'
+            listType="picture-card"
             onPreview={handlePreview}
             onChange={handleChange}
             maxCount={10}
@@ -163,18 +163,18 @@ const UpdateThreadForm = () => {
             offset: 6,
           }}
         >
-          <Button type='primary' htmlType='submit'>
+          <Button type="primary" htmlType="submit">
             Submit
           </Button>
         </Form.Item>
       </Form>
       <Modal
-        visible={previewVisible}
+        open={previewVisible}
         title={previewTitle}
         footer={null}
         onCancel={handleCancel}
       >
-        <img alt='example' style={{ width: '100%' }} src={previewImage} />
+        <img alt="example" style={{ width: "100%" }} src={previewImage} />
       </Modal>
     </>
   );
