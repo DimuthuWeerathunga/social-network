@@ -65,7 +65,7 @@ function LoginForm() {
             marginTop: '1rem',
           }}
         >
-          Or <Link to="/">register now!</Link>
+          Or <Link to="/">Register now!</Link>
         </span>
       </Form.Item>
     </Form>
