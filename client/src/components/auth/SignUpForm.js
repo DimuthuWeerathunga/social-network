@@ -1,5 +1,5 @@
-import React from "react";
-import { Form, Input, Select, Button, DatePicker } from "antd";
+import React from 'react';
+import { Form, Input, Select, Button, DatePicker } from 'antd';
 
 const { Option } = Select;
 
@@ -38,8 +38,8 @@ function SignUpForm() {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
-    console.log(values.birthday.toDate());
+    console.log('Received values of form: ', values);
+    console.log(values.birthday);
   };
 
   return (
@@ -51,8 +51,9 @@ function SignUpForm() {
       scrollToFirstError
       initialValues={{}}
       onValuesChange={(changedValues, allValues) => {
-        console.log("changed fields", changedValues);
-        // console.log('all fields', allValues);
+        if (changedValues.birthday) {
+          console.log(changedValues.birthday.format('YYYY-MM-DD'));
+        }
       }}
     >
       <Form.Item
@@ -62,7 +63,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: "Name cannot be empty!",
+            message: 'Name cannot be empty!',
             whitespace: true,
           },
         ]}
@@ -74,12 +75,12 @@ function SignUpForm() {
         label="E-mail"
         rules={[
           {
-            type: "email",
-            message: "Email should be valid",
+            type: 'email',
+            message: 'Email should be valid',
           },
           {
             required: true,
-            message: "Please input your E-mail!",
+            message: 'Please input your E-mail!',
           },
         ]}
       >
@@ -92,7 +93,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: "Please input your password!",
+            message: 'Please input your password!',
           },
         ]}
         hasFeedback
@@ -103,21 +104,21 @@ function SignUpForm() {
       <Form.Item
         name="confirm"
         label="Confirm Password"
-        dependencies={["password"]}
+        dependencies={['password']}
         hasFeedback
         rules={[
           {
             required: true,
-            message: "Please confirm your password!",
+            message: 'Please confirm your password!',
           },
           ({ getFieldValue }) => ({
             validator(_, value) {
-              if (!value || getFieldValue("password") === value) {
+              if (!value || getFieldValue('password') === value) {
                 return Promise.resolve();
               }
 
               return Promise.reject(
-                new Error("The two passwords that you entered do not match!")
+                new Error('The two passwords that you entered do not match!')
               );
             },
           }),
@@ -129,7 +130,7 @@ function SignUpForm() {
       <Form.Item
         label="Birthday"
         name="birthday"
-        rules={[{ required: true, message: "Please enter your birthday" }]}
+        rules={[{ required: true, message: 'Please enter your birthday' }]}
       >
         <DatePicker />
       </Form.Item>
@@ -140,7 +141,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: "Fill in bio to be showcased in your profile",
+            message: 'Fill in bio to be showcased in your profile',
           },
         ]}
       >
@@ -153,7 +154,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: "Please select gender!",
+            message: 'Please select gender!',
           },
         ]}
       >
