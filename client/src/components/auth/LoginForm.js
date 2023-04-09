@@ -6,53 +6,54 @@ import { Link } from 'react-router-dom';
 function LoginForm() {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
+    // TODO send form details to the backend
   };
 
   return (
     <Form
-      name='normal_login'
-      className='login-form'
+      name="normal_login"
+      className="login-form"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
-      size='large'
+      size="large"
     >
       <Form.Item
-        name='username'
+        name="email"
         rules={[
           {
             required: true,
-            message: 'Please input your Username!',
+            message: 'Please enter your Email!',
           },
         ]}
       >
         <Input
-          prefix={<UserOutlined className='site-form-item-icon' />}
-          placeholder='Username'
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Email"
         />
       </Form.Item>
       <Form.Item
-        name='password'
+        name="password"
         rules={[
           {
             required: true,
-            message: 'Please input your Password!',
+            message: 'Please enter your Password!',
           },
         ]}
       >
         <Input
-          prefix={<LockOutlined className='site-form-item-icon' />}
-          type='password'
-          placeholder='Password'
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
         />
       </Form.Item>
 
       <Form.Item style={{ textAlign: 'center' }}>
         <Button
-          type='primary'
-          htmlType='submit'
-          className='login-form-button'
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
           block
         >
           Log in
@@ -64,7 +65,7 @@ function LoginForm() {
             marginTop: '1rem',
           }}
         >
-          Or <Link to='/'>register now!</Link>
+          Or <Link to="/">register now!</Link>
         </span>
       </Form.Item>
     </Form>
