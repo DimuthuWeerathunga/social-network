@@ -80,7 +80,7 @@ function SignUpForm() {
           },
           {
             required: true,
-            message: 'Please input your E-mail!',
+            message: 'Please enter your E-mail!',
           },
         ]}
       >
@@ -93,7 +93,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: 'Please input your password!',
+            message: 'Please enter a password!',
           },
         ]}
         hasFeedback
@@ -154,7 +154,7 @@ function SignUpForm() {
         rules={[
           {
             required: true,
-            message: 'Please select gender!',
+            message: 'Please select a gender!',
           },
         ]}
       >
