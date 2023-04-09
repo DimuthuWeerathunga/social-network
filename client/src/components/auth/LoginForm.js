@@ -26,6 +26,10 @@ function LoginForm() {
             required: true,
             message: 'Please enter your Email!',
           },
+          {
+            type: 'email',
+            message: 'Email should be valid!',
+          },
         ]}
       >
         <Input

@@ -77,7 +77,7 @@ function SignUpForm() {
         rules={[
           {
             type: 'email',
-            message: 'Email should be valid',
+            message: 'Email should be valid!',
           },
           {
             required: true,
