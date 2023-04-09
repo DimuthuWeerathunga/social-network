@@ -39,7 +39,8 @@ function SignUpForm() {
 
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
-    console.log(values.birthday);
+    // console.log(values.birthday);
+    // TODO send form details to the backend
   };
 
   return (
