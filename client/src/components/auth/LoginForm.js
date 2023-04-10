@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 function LoginForm() {
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
     // TODO send form details to the backend
   };
 
