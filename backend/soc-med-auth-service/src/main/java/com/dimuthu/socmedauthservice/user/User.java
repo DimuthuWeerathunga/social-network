@@ -45,6 +45,7 @@ public class User implements UserDetails {
   @Column(
       updatable = false
   )
+  private String id;
   private String name;
   private String email;
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
