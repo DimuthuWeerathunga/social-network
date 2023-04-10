@@ -24,20 +24,21 @@ import java.time.LocalDate;
     message = "Passwords do not match!"
 )
 public class RegisterRequest {
-  @NotBlank
-  @Size(max = 50)
-  private String name;
-  @Email
-  @NotNull
-  private String email;
-  @NotBlank
-  private String password;
-  @NotBlank
-  private String confirmPassword;
-  @Past
-  private LocalDate birthday;
-  private String bio;
-  @NotNull
-  private Gender gender;
+    @NotBlank(message = "Name must be provided")
+    @Size(max = 50, message = "Name exceeds the maximum charater size")
+    private String name;
+    @Email
+    @NotNull(message = "Email must not be null")
+    private String email;
+    @NotBlank(message = "Password required")
+    private String password;
+    @NotBlank
+    private String confirmPassword;
+    @Past(message = "Birthday must be in the past")
+    @NotNull(message = "Birthday must be provided")
+    private LocalDate birthday;
+    private String bio;
+    @NotNull(message = "Gender must be selected")
+    private Gender gender;
 
 }
