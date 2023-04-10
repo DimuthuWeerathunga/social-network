@@ -12,11 +12,10 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
-
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
-
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Past;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,6 +24,10 @@ import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Getter
 @Setter
@@ -45,16 +48,23 @@ public class User implements UserDetails {
   @Column(
       updatable = false
   )
-  private String id;
+  private Long id;
+  @NotBlank(message = "Name must not be empty")
   private String name;
+  @Email(message = "Email must be valid")
+  @NotNull
   private String email;
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private String password;
-  private Date birthday;
+  @Past(message = "Birthday should be in the past")
+  @NotNull
+  private LocalDate birthday;
   private String bio;
+  @NotNull(message = "Please select your gender")
   private Gender gender;
 
   @Enumerated(EnumType.STRING)
+  @NotNull(message = "User must have a role")
   private Role role;
 
   @OneToMany(mappedBy = "user")
