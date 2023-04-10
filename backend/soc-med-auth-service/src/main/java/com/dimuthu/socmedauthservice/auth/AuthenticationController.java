@@ -1,5 +1,6 @@
 package com.dimuthu.socmedauthservice.auth;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -17,10 +18,10 @@ public class AuthenticationController {
   private final AuthenticationService authenticationService;
 
   @PostMapping("/signup")
-  public ResponseEntity<AuthenticationResponse> register(
-      @RequestBody RegisterRequest request
+  public ResponseEntity<String> register(
+      @Valid @RequestBody RegisterRequest request
   ) {
-    return ResponseEntity.ok(authenticationService.register(request));
+    return ResponseEntity.ok("Nothing went wrong");
   }
 
   @PostMapping("/signin")

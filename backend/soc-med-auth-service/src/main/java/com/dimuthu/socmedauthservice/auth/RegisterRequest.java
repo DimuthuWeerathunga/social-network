@@ -1,7 +1,7 @@
 package com.dimuthu.socmedauthservice.auth;
 
 import com.dimuthu.socmedauthservice.user.Gender;
-import jakarta.validation.constraints.AssertTrue;
+import com.dimuthu.socmedauthservice.validation.FieldsValueMatch;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -18,9 +18,14 @@ import java.time.LocalDate;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@FieldsValueMatch(
+    field = "password",
+    fieldMatch = "confirmPassword",
+    message = "Passwords do not match!"
+)
 public class RegisterRequest {
   @NotBlank
-  @Size( max = 50)
+  @Size(max = 50)
   private String name;
   @Email
   @NotNull
@@ -34,10 +39,5 @@ public class RegisterRequest {
   private String bio;
   @NotNull
   private Gender gender;
-
-  @AssertTrue( message = "Password and confirm password fields do not match")
-  public boolean doPasswordsMatch(){
-    return password != null && password.equals(confirmPassword);
-  }
 
 }
