@@ -2,12 +2,15 @@ package com.dimuthu.socmedauthservice.user;
 
 import com.dimuthu.socmedauthservice.token.Token;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 import java.util.Collection;
@@ -33,8 +36,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class User implements UserDetails {
 
   @Id
-  @GeneratedValue
-  private Long id;
+  @SequenceGenerator(
+      name = "user_sequence",
+      sequenceName = "user_sequence",
+      allocationSize = 1
+  )
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_sequence")
+  @Column(
+      updatable = false
+  )
   private String name;
   private String email;
   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
