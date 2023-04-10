@@ -16,6 +16,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,6 +51,7 @@ public class User implements UserDetails {
   )
   private Long id;
   @NotBlank(message = "Name must not be empty")
+  @Size(max = 50)
   private String name;
   @Email(message = "Email must be valid")
   @NotNull
