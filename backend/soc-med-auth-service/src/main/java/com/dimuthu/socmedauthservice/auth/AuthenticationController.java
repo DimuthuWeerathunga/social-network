@@ -31,8 +31,8 @@ public class AuthenticationController {
   }
 
   @GetMapping("/user")
-  public String getAuthenticatedUser(Authentication authentication){
-    return authentication.getPrincipal().toString();
+  public Object getAuthenticatedUser(Authentication authentication){
+    return authentication.getPrincipal();
   }
 }
 

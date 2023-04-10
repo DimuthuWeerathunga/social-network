@@ -1,6 +1,7 @@
 package com.dimuthu.socmedauthservice.user;
 
 import com.dimuthu.socmedauthservice.token.Token;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -10,6 +11,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import lombok.AllArgsConstructor;
@@ -33,15 +35,19 @@ public class User implements UserDetails {
   @Id
   @GeneratedValue
   private Long id;
-  private String firstname;
-  private String lastname;
+  private String name;
   private String email;
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private String password;
+  private Date birthday;
+  private String bio;
+  private Gender gender;
 
   @Enumerated(EnumType.STRING)
   private Role role;
 
   @OneToMany(mappedBy = "user")
+  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
   private List<Token> tokens;
 
   @Override
@@ -83,10 +89,12 @@ public class User implements UserDetails {
   public String toString() {
     return "User{" +
         "id=" + id +
-        ", firstname='" + firstname + '\'' +
-        ", lastname='" + lastname + '\'' +
+        ", name='" + name + '\'' +
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
+        ", birthday=" + birthday +
+        ", bio='" + bio + '\'' +
+        ", gender=" + gender +
         ", role=" + role +
         '}';
   }

@@ -11,10 +11,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -38,4 +40,15 @@ public class Token {
   @ManyToOne
   @JoinColumn(name = "user_id")
   public User user;
+
+  @Override
+  public String toString() {
+    return "Token{" +
+        "id=" + id +
+        ", token='" + token + '\'' +
+        ", tokenType=" + tokenType +
+        ", revoked=" + revoked +
+        ", expired=" + expired +
+        '}';
+  }
 }
