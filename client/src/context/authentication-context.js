@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const AuthContext = React.createContext({
+export const AuthContext = React.createContext({
     isLoggedIn: false,
     onLogout: () => {
     },
@@ -11,6 +12,8 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [token, setToken] = useState('');
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         const storedUserLoggedInInformation = localStorage.getItem('isLoggedIn');
@@ -31,6 +34,7 @@ export const AuthContextProvider = (props) => {
         setToken(token);
         localStorage.setItem('isLoggedIn', '1');
         localStorage.setItem('token', token);
+        navigate('/');
     };
 
     return (
@@ -47,4 +51,4 @@ export const AuthContextProvider = (props) => {
     );
 };
 
-export default AuthContext;
+export default AuthContextProvider;

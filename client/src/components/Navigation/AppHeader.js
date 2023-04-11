@@ -9,12 +9,12 @@ import {
     DribbbleOutlined,
     LoginOutlined,
     UserAddOutlined,
-    HomeOutlined, UserOutlined, UserSwitchOutlined
+    HomeOutlined, UserOutlined
 } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
 import { PRIMARY_BG_COLOR, TERTIARY_BG_COLOR } from '../../global-settings/colors';
-import AuthContext from '../../context/authentication-context';
+import { AuthContext } from '../../context/authentication-context';
 
 const {
     Header

@@ -1,21 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input, Button } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { AuthContext } from '../../context/authentication-context';
 
 function LoginForm() {
+    const auth = useContext(AuthContext)
     const onFinish = async (values) => {
-        // TODO send form details to the backend
+        let response;
         try {
-            const response =
-                await axios.post(
-                    process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL + '/signin',
-                    values
-                );
+            response = await axios.post(
+                process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL + '/signin',
+                values
+            );
             console.log(response.data);
         } catch (error) {
             console.log(error.response.data.message);
+        }
+        if(response.data){
+            auth.onLogin(response.data.token);
         }
     };
 
