@@ -1,5 +1,6 @@
 import React from 'react';
 import { Form, Input, Select, Button, DatePicker } from 'antd';
+import axios from 'axios';
 
 const { Option } = Select;
 
@@ -38,14 +39,21 @@ const tailFormItemLayout = {
 function SignUpForm() {
     const [form] = Form.useForm();
 
-    const onFinish = (values) => {
-        // TODO send form details to the backend
+    const onFinish = async (values) => {
         const correctedValues = {
             ...values,
             birthday: values.birthday.format('YYYY-MM-DD')
         };
-        console.log(correctedValues);
-
+        try {
+            const response =
+                await axios.post(
+                    'http://localhost:8080/api/v1/auth/signup',
+                    correctedValues
+                );
+            console.log(response.data);
+        } catch (error){
+            console.log(error.response.data.message)
+        }
     };
 
     return (
@@ -102,7 +110,7 @@ function SignUpForm() {
             </Form.Item>
 
             <Form.Item
-                name='confirm'
+                name='confirmPassword'
                 label='Confirm Password'
                 dependencies={['password']}
                 hasFeedback
@@ -159,9 +167,9 @@ function SignUpForm() {
                 ]}
             >
                 <Select placeholder='select your gender'>
-                    <Option value='male'>Male</Option>
-                    <Option value='female'>Female</Option>
-                    <Option value='other'>Other</Option>
+                    <Option value='MALE'>Male</Option>
+                    <Option value='FEMALE'>Female</Option>
+                    <Option value='OTHER'>Other</Option>
                 </Select>
             </Form.Item>
 

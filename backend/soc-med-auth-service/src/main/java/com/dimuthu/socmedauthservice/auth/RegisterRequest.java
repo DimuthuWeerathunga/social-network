@@ -32,7 +32,7 @@ public class RegisterRequest {
     private String email;
     @NotBlank(message = "Password required")
     private String password;
-    @NotBlank
+    @NotBlank()
     private String confirmPassword;
     @Past(message = "Birthday must be in the past")
     @NotNull(message = "Birthday must be provided")
