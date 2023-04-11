@@ -10,7 +10,7 @@ function LoginForm() {
         try {
             const response =
                 await axios.post(
-                    process.env.AUTH_SERVICE_BACKEND_URL + '/signin',
+                    process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL + '/signin',
                     values
                 );
             console.log(response.data);
