@@ -1,3 +1,2 @@
-Hi this is the readme file
-
-This is edited from my secondary github account forked repo on a new branch
+This is a project I am currently working on.
+I hope to add proper documentation in the future so bear with me.
