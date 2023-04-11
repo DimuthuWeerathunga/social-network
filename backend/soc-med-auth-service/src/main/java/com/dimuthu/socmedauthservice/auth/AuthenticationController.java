@@ -18,15 +18,15 @@ public class AuthenticationController {
   private final AuthenticationService authenticationService;
 
   @PostMapping("/signup")
-  public ResponseEntity<String> register(
+  public ResponseEntity<AuthenticationResponse> register(
       @Valid @RequestBody RegisterRequest request
   ) {
-    return ResponseEntity.ok("Nothing went wrong");
+    return ResponseEntity.ok( authenticationService.register(request));
   }
 
   @PostMapping("/signin")
   public ResponseEntity<AuthenticationResponse> authenticate(
-      @RequestBody AuthenticationRequest request
+      @Valid @RequestBody AuthenticationRequest request
   ) {
     return ResponseEntity.ok(authenticationService.authenticate(request));
   }

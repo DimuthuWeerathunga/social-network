@@ -1,5 +1,6 @@
 package com.dimuthu.socmedauthservice.auth;
 
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +11,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthenticationRequest {
-
-  private String email;
-  private String password;
+    @NotNull
+    private String email;
+    @NotNull
+    private String password;
 }
