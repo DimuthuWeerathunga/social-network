@@ -45,6 +45,7 @@ function SignUpForm() {
             birthday: values.birthday.format('YYYY-MM-DD')
         };
         console.log(correctedValues);
+
     };
 
     return (
