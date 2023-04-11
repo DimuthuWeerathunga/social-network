@@ -10,7 +10,7 @@ function LoginForm() {
         try {
             const response =
                 await axios.post(
-                    'http://localhost:8080/api/v1/auth/signin',
+                    process.env.AUTH_SERVICE_BACKEND_URL + '/signin',
                     values
                 );
             console.log(response.data);

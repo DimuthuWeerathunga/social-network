@@ -47,7 +47,7 @@ function SignUpForm() {
         try {
             const response =
                 await axios.post(
-                    'http://localhost:8080/api/v1/auth/signup',
+                    process.env.AUTH_SERVICE_BACKEND_URL + '/signup',
                     correctedValues
                 );
             console.log(response.data);
