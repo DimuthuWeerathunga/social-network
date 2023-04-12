@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Menu } from 'antd';
-import { UsergroupAddOutlined } from '@ant-design/icons';
+import { UsergroupAddOutlined, UserOutlined } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
 import { PRIMARY_BG_COLOR } from '../../global-settings/colors';
@@ -16,7 +16,7 @@ function AppLeftSider() {
       onClick={navigation.handleNavClick}
       style={{ marginTop: '2rem', backgroundColor: PRIMARY_BG_COLOR }}
     >
-      <Menu.Item key='profile' icon={<UsergroupAddOutlined />}>
+      <Menu.Item key='profile' icon={<UserOutlined />}>
         Profile
       </Menu.Item>
       <Menu.Item key='people' icon={<UsergroupAddOutlined />}>
