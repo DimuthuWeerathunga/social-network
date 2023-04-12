@@ -9,7 +9,7 @@ import {
     DribbbleOutlined,
     LoginOutlined,
     UserAddOutlined,
-    HomeOutlined, UserOutlined
+    HomeOutlined, LogoutOutlined
 } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
@@ -86,7 +86,7 @@ function AppHeader() {
                                 <Menu.Item key='signup' icon={<UserAddOutlined />}>
                                     SingUp
                                 </Menu.Item></>}
-                            {auth.isLoggedIn && <Menu.Item key='logout' icon={<UserOutlined />}>
+                            {auth.isLoggedIn && <Menu.Item key='logout' icon={<LogoutOutlined />}>
                                 Log Out
                             </Menu.Item>}
                         </Menu>

@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Form, Input, Select, Button, DatePicker } from 'antd';
 import axios from 'axios';
+import { AuthContext } from '../../context/authentication-context';
 
 const { Option } = Select;
 
@@ -38,22 +39,27 @@ const tailFormItemLayout = {
 
 function SignUpForm() {
     const [form] = Form.useForm();
+    const auth = useContext(AuthContext);
 
     const onFinish = async (values) => {
         const correctedValues = {
             ...values,
             birthday: values.birthday.format('YYYY-MM-DD')
         };
+        let response;
         try {
-            const response =
+            response =
                 await axios.post(
                     process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL +
                     '/signup',
                     correctedValues
                 );
             console.log(response.data);
-        } catch (error){
-            console.log(error.response.data.message)
+        } catch (error) {
+            console.log(error.response.data.message);
+        }
+        if (response.data) {
+            auth.onLogin(response.data.token);
         }
     };
 
