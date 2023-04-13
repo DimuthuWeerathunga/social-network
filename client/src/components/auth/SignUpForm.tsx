@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Form, Input, Select, Button, DatePicker } from 'antd';
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { AuthContext } from '../../context/authentication-context';
 import dayjs from 'dayjs';
 
