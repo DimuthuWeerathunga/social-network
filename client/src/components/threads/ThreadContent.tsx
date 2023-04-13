@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
-import React from 'react';
+import React, { FC } from 'react';
 
-const ThreadContent = () => {
+const ThreadContent: FC = () => {
   return (
     <Row>
       <Col span={22} offset={1}>

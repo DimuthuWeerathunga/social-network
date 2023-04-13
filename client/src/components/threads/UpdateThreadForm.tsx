@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { FC, useState } from 'react';
 import { Form, Button, Upload, Input, Modal } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 
@@ -12,32 +11,32 @@ const formItemLayout = {
   },
 };
 
-function normFile(e) {
-  // console.log('Upload event:', e);
-
+const normFile = (e: any) => {
   if (Array.isArray(e)) {
     return e;
   }
-
   return e && e.fileList;
-}
+};
 
-function getBase64(file) {
-  return new Promise((resolve, reject) => {
+const getBase64 = (file: File) => {
+  return new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
+    reader.onload = () => resolve(reader.result as string);
     reader.onerror = (error) => reject(error);
   });
-}
+};
 
-const UpdateThreadForm = () => {
+const UpdateThreadForm: FC = () => {
+  // TODO redefine types where needed
+
+
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewImage, setPreviewImage] = useState("");
-  const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([]);
+  const [previewImage, setPreviewImage] = useState<string>("");
+  const [previewTitle, setPreviewTitle] = useState<string>("");
+  const [fileList, setFileList] = useState<any[]>([]);
 
-  async function handlePreview(file) {
+  const handlePreview = async (file: any) => {
     if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj);
     }
@@ -46,17 +45,17 @@ const UpdateThreadForm = () => {
     setPreviewTitle(
       file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
     );
-  }
+  };
 
-  function handleChange({ fileList }) {
-    return setFileList(fileList);
-  }
+  const handleChange = ({ fileList }: { fileList: any[] }) => {
+    setFileList(fileList);
+  };
 
-  function handleCancel() {
-    return setPreviewVisible(false);
-  }
+  const handleCancel = () => {
+    setPreviewVisible(false);
+  };
 
-  function beforeUpload(file, fileList) {
+  const beforeUpload = (file: File, fileList: File[]) => {
     if (file.type === "image/jpeg" || file.type === "image/png") {
       return true;
     } else {
@@ -64,9 +63,9 @@ const UpdateThreadForm = () => {
       console.log(fileList);
       return Upload.LIST_IGNORE;
     }
-  }
+  };
 
-  const onFinish = (values) => {
+  const onFinish = (values: any) => {
     console.log("Received values of form: ", values);
   };
 
@@ -144,7 +143,9 @@ const UpdateThreadForm = () => {
             beforeUpload={beforeUpload}
             customRequest={({ onSuccess }) => {
               console.log("Custome request handled");
-              onSuccess();
+              if(onSuccess){
+                // onSuccess();
+              }
               // console.log(fileList);
             }}
             fileList={fileList}

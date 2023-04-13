@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Card, Avatar, Col } from 'antd';
 import {
   EditOutlined,
   EllipsisOutlined,
-  SettingOutlined,
+  SettingOutlined
 } from '@ant-design/icons';
 
 const { Meta } = Card;
 
-function UserCard() {
+const UserCard: FC = () => {
   return (
     <Col xs={20} sm={12} md={10} lg={9} xl={8}>
       <Card
@@ -16,7 +16,7 @@ function UserCard() {
         actions={[
           <SettingOutlined key='setting' />,
           <EditOutlined key='edit' />,
-          <EllipsisOutlined key='ellipsis' />,
+          <EllipsisOutlined key='ellipsis' />
         ]}
       >
         <Meta
@@ -27,6 +27,6 @@ function UserCard() {
       </Card>
     </Col>
   );
-}
+};
 
 export default UserCard;

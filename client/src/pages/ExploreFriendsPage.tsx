@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { FC } from 'react';
 import UserList from '../components/users/UserList';
 
-function ExploreFriendsPage() {
+const ExploreFriendsPage: FC = () => {
   return <UserList />;
 }
 

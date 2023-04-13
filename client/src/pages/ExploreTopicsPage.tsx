@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Col, Row, Tabs } from 'antd';
 import TopicsList from '../components/topics/TopicsList';
 
 const { TabPane } = Tabs;
 
-function callback(key) {
+const callback = (key: string) => {
   console.log(key);
-}
+};
 
-function ExploreTopicsPage() {
+const ExploreTopicsPage: FC = () => {
   return (
     <Row style={{ padding: '2rem', justifyContent: 'center' }}>
       <Col span={20}>
         <Tabs defaultActiveKey='1' onChange={callback}>
           <TabPane tab='Latest' key='latest-topics'>
-            <TopicsList latestTopicList />
+            <TopicsList />
           </TabPane>
           <TabPane tab='Trending' key='trending-topics'>
-            <TopicsList trendigTopicsList />
+            <TopicsList />
           </TabPane>
         </Tabs>
       </Col>
     </Row>
   );
-}
+};
 
 export default ExploreTopicsPage;

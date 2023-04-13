@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { ChangeEventHandler, MouseEventHandler } from 'react';
 import { Form, Button, Input } from 'antd';
 
 const { TextArea } = Input;
 
-function ReplyEditor({ onChange, onSubmit, submitting }) {
+interface ReplyEditorProps {
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: () => void;
+  submitting: boolean;
+}
+
+const ReplyEditor: React.FC<ReplyEditorProps> = ({ onChange, onSubmit, submitting }) => {
   return (
     <>
       <Form.Item>
@@ -25,6 +31,6 @@ function ReplyEditor({ onChange, onSubmit, submitting }) {
       </Form.Item>
     </>
   );
-}
+};
 
 export default ReplyEditor;

@@ -4,38 +4,43 @@ import { Comment } from '@ant-design/compatible';
 import { LikeOutlined, DislikeOutlined } from '@ant-design/icons';
 
 import IconText from '../../shared/IconText';
-import commentsList from './CommentListData';
 import ReplyEditor from './ReplyEditor';
 
 import './CommentNode.css';
 import { SECONDARY_BG_COLOR } from '../../../global-settings/colors';
+import commentsList from './CommentListData';
 
-function CommentNode({ commentId, content }) {
-  const [childComments, setChildComments] = useState([]);
+interface CommentNodeProps {
+  commentId: string;
+  content: string;
+}
+
+const CommentNode: React.FC<CommentNodeProps> = ({ commentId, content }) => {
+  const [childComments, setChildComments] = useState<CommentNodeProps[]>([]);
   const [showReplyBox, setShowReplyBox] = useState(false);
   const [replyBoxContent, setReplyBoxContent] = useState('');
   const [submittingReply, setSubmittingReply] = useState(false);
 
   useEffect(() => {
-    let commentTimout = setTimeout(() => {
+    const commentTimeout = setTimeout(() => {
       setChildComments(
         commentsList.filter((comment) => comment.parentId === commentId)
       );
     }, 2000);
     return () => {
-      clearTimeout(commentTimout);
+      clearTimeout(commentTimeout);
     };
   }, [commentId]);
 
-  function onReplyToClicked() {
+  const onReplyToClicked = () => {
     setShowReplyBox((prevShowReplyBox) => !prevShowReplyBox);
-  }
+  };
 
-  function onReplyBoxContentChange(event) {
+  const onReplyBoxContentChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReplyBoxContent(event.target.value);
-  }
+  };
 
-  function onReplySubmit() {
+  const onReplySubmit = () => {
     if (!replyBoxContent) {
       console.log('empty comments are not allowed');
       return;
@@ -57,7 +62,7 @@ function CommentNode({ commentId, content }) {
       setSubmittingReply(false);
       setShowReplyBox(false);
     }, 2000);
-  }
+  };
 
   return (
     <Comment
@@ -85,7 +90,7 @@ function CommentNode({ commentId, content }) {
           text='156'
           key='list-vertical-dislike-o'
           haveButton
-          type='danger'
+          type='ghost'
           ghost
           size='small'
         />,
@@ -112,6 +117,6 @@ function CommentNode({ commentId, content }) {
       ))}
     </Comment>
   );
-}
+};
 
 export default CommentNode;

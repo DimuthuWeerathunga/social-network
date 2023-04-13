@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Row, Col } from 'antd';
 import CommentNode from './CommentNode';
 
-import commentsList from './CommentListData';
+import commentsList, { CommentType } from './CommentListData';
 
-function CommentsSection({ parentPostId }) {
-  const [comments, setComments] = useState([]);
+interface CommentsSectionProps {
+  parentPostId: string;
+}
+
+const CommentsSection: React.FC<CommentsSectionProps> = ({ parentPostId }) => {
+  const [comments, setComments] = useState<CommentType[]>([]);
 
   useEffect(() => {
-    let commentTimout = setTimeout(() => {
+    const commentTimout = setTimeout(() => {
       setComments(
         commentsList.filter((comment) => comment.parentId === parentPostId)
       );
