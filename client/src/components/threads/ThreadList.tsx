@@ -15,9 +15,15 @@ import {
   SECONDARY_BG_COLOR,
   TERTIARY_BG_COLOR,
 } from '../../global-settings/colors';
+import { ListData } from '../../pages/NewThreadsPage';
 
-function ThreadList({ listData }) {
+interface ThreadListProps {
+  listData: ListData[];
+}
+
+const ThreadList: React.FC<ThreadListProps> = ({ listData }) => {
   const [currentPage, setCurrentPage] = useState(1);
+
   return (
     <div style={{ backgroundColor: SECONDARY_BG_COLOR }}>
       <List
@@ -50,7 +56,7 @@ function ThreadList({ listData }) {
                 text='156'
                 key='list-vertical-dislike-o'
                 haveButton
-                type='danger'
+                type='ghost'
                 size='small'
                 ghost
               />,

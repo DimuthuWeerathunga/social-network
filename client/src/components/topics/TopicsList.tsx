@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { List } from 'antd';
 
 const data = [
@@ -6,10 +6,10 @@ const data = [
   'Japanese princess to wed commoner.',
   'Australian walks 100km after outback crash.',
   'Man charged over missing wedding girl.',
-  'Los Angeles battles huge wildfires.',
+  'Los Angeles battles huge wildfires.'
 ];
 
-function TopicsList() {
+const TopicsList: FC = () => {
   return (
     <List
       style={{ width: '100%' }}
@@ -19,9 +19,9 @@ function TopicsList() {
       bordered
       dataSource={data}
       renderItem={(item) => <List.Item>{item}</List.Item>}
-      pagination
+      // pagination
     />
   );
-}
+};
 
 export default TopicsList;

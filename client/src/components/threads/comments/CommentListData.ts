@@ -1,3 +1,9 @@
+export interface CommentType {
+  parentId: string;
+  commentId: string;
+  content: string;
+}
+
 const commentsList = [
   { parentId: 'a', commentId: 'a1', content: 'comment a1' },
   { parentId: 'a', commentId: 'a2', content: 'comment a2' },

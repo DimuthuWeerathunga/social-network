@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { PageHeader } from '@ant-design/pro-layout';
 
 import { Link, useParams } from 'react-router-dom';
 import ThreadContent from '../components/threads/ThreadContent';
 import CommentsSection from '../components/threads/comments/CommentsSection';
+import { ItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import { PRIMARY_TEXT_COLOR } from '../global-settings/colors';
 
-function ThreadPage() {
+const ThreadPage: FC = () => {
   const { threadId } = useParams();
   console.log(threadId);
 
-  const routes = [
+
+  const breadcrumbItems = [
     {
-      path: '',
-      breadcrumbName: 'Home',
+      path: undefined,
+      title: 'Home'
     },
     {
       path: 'categories',
-      breadcrumbName: 'Categories',
+      title: 'Categories'
     },
     {
       path: 'thread',
-      breadcrumbName: 'Thread',
-    },
+      title: 'Thread'
+    }
   ];
 
   return (
@@ -35,24 +37,25 @@ function ThreadPage() {
         }
         className='thread-page-header'
         avatar={{
-          src: 'https://avatars1.githubusercontent.com/u/8186664?s=460&v=4',
+          src: 'https://avatars1.githubusercontent.com/u/8186664?s=460&v=4'
         }}
         breadcrumb={{
-          routes,
-          itemRender: function itemRender(route, params, routes, paths) {
+          items: breadcrumbItems,
+          itemRender: (route: ItemType, params: any, routes: ItemType[], paths: string[]) => {
             const last = routes.indexOf(route) === routes.length - 1;
+            console.log(`/${paths.join('/')}`);
             return last ? (
-              <span>{route.breadcrumbName}</span>
+              <span>{'title' in route ? route.title : 'TitleUnavailable'}</span>
             ) : (
-              <Link to={`/${paths.join('/')}`}>{route.breadcrumbName}</Link>
+              <Link to={`/${paths.join('/')}`}>{'title' in route ? route.title : 'TitleUnavailable'}</Link>
             );
-          },
+          }
         }}
       ></PageHeader>
       <ThreadContent />
       <CommentsSection parentPostId='a' />
     </>
   );
-}
+};
 
 export default ThreadPage;

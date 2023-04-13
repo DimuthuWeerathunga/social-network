@@ -1,10 +1,10 @@
-import React from "react";
+import React, { FC } from 'react';
 import { Col } from "antd";
 
 import SignUpForm from "../components/auth/SignUpForm";
 import { SECONDARY_BG_COLOR } from "../global-settings/colors";
 
-function SignUpPage() {
+const SignUpPage: FC = () => {
   return (
     <div style={{ backgroundColor: SECONDARY_BG_COLOR }}>
       <Col

@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import ThreadList from '../components/threads/ThreadList';
 
-const listData = [];
+export interface ListData {
+  avatar: string;
+  to: string;
+  title: string;
+  description: string;
+  content: string;
+}
+
+const listData: ListData[] = [];
 for (let i = 0; i < 20; i++) {
   listData.push({
     to: '/categories/thread/fgeirbgrei9',
@@ -16,7 +24,7 @@ for (let i = 0; i < 20; i++) {
   });
 }
 
-function NewThreadsPage() {
+const NewThreadsPage: FC = () => {
   return <ThreadList listData={listData}></ThreadList>;
 }
 

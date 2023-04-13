@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { FC } from 'react';
 import {Col} from 'antd';
 import LoginForm from '../components/auth/LoginForm';
 import {SECONDARY_BG_COLOR} from '../global-settings/colors';
 
-function LoginPage() {
+const LoginPage: FC = () => {
   return (
     <div
       style={{

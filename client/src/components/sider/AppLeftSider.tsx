@@ -1,11 +1,12 @@
-import React, { useContext } from 'react';
+import React, { FC, useContext } from 'react';
 import { Menu } from 'antd';
 import { UsergroupAddOutlined, UserOutlined } from '@ant-design/icons';
 
 import { NavigationContext } from '../../context/navigation-context';
 import { PRIMARY_BG_COLOR } from '../../global-settings/colors';
 
-function AppLeftSider() {
+
+const AppLeftSider: FC = () => {
   const navigation = useContext(NavigationContext);
 
   return (

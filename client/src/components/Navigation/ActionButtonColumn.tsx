@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { PlusCircleOutlined, ShareAltOutlined } from '@ant-design/icons';
 import { Col } from 'antd';
 
@@ -6,7 +6,7 @@ import ActionButton from './ActionButton';
 
 import './ActionButtonColumn.css';
 
-function ActionButtonColumn() {
+const ActionButtonColumn: FC = () => {
   return (
     <Col className='action-button-column'>
       <ActionButton
