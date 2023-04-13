@@ -62,7 +62,7 @@ const SignUpForm: FC = () => {
     let response: AxiosResponse<{ token: string }> | undefined;
     try {
       response = await axios.post(
-        import.meta.env.AUTH_SERVICE_BACKEND_URL + '/signup',
+        import.meta.env.VITE_AUTH_SERVICE_BACKEND_URL + '/signup',
         correctedValues
       );
       console.log(response?.data);

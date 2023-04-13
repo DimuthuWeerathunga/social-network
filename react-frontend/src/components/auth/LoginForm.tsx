@@ -17,7 +17,7 @@ const LoginForm: FC = () => {
     let response: AxiosResponse<{token: string}> | undefined;
     try {
       response = await axios.post(
-        import.meta.env.AUTH_SERVICE_BACKEND_URL + '/signin',
+        import.meta.env.VITE_AUTH_SERVICE_BACKEND_URL + '/signin',
         values
       );
       console.log(response?.data);
