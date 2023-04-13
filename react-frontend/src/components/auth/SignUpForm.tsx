@@ -67,6 +67,7 @@ const SignUpForm: FC = () => {
       );
       console.log(response?.data);
     } catch (error) {
+      console.error(error)
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data?.message);
       }

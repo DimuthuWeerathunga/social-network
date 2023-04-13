@@ -22,7 +22,7 @@ const LoginForm: FC = () => {
       );
       console.log(response?.data);
     } catch (error) {
-       console.log(error)
+       console.error(error)
       if (axios.isAxiosError(error)) {
         console.log(error?.response?.data.message);
       }
