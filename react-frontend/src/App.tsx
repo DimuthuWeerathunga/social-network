@@ -46,7 +46,7 @@ const App: FC = () => {
                 <Route path="people" element={<ExploreFriendsPage />}></Route>
                 <Route path="login" element={<LoginPage />}></Route>
                 <Route path="signup" element={<SignUpPage />} />
-                <Route path="profile/:userId" element={<ProfilePage />} />
+                <Route path="profile" element={<ProfilePage />} />
               </Route>
             </Routes>
           </ConfigProvider>
