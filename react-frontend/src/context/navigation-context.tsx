@@ -38,6 +38,9 @@ const NavContextProvider = ({ children }: { children: React.ReactNode }) => {
       case 'people':
         navigate('/people');
         break;
+      case 'profile':
+        navigate('/profile');
+        break;
       default:
         navigate('/');
     }

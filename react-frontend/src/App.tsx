@@ -15,6 +15,7 @@ import ExploreFriendsPage from './pages/ExploreFriendsPage';
 import ExploreTopicsPage from './pages/ExploreTopicsPage';
 import { PRIMARY_COLOR, PRIMARY_TEXT_COLOR } from './global-settings/colors';
 import AuthContextProvider from './context/authentication-context';
+import ProfilePage from './pages/ProfilePage';
 
 const App: FC = () => {
   return (
@@ -45,6 +46,7 @@ const App: FC = () => {
                 <Route path="people" element={<ExploreFriendsPage />}></Route>
                 <Route path="login" element={<LoginPage />}></Route>
                 <Route path="signup" element={<SignUpPage />} />
+                <Route path="profile/:userId" element={<ProfilePage />} />
               </Route>
             </Routes>
           </ConfigProvider>
