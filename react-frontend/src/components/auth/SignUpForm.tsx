@@ -1,6 +1,6 @@
 import React, { FC, useContext } from 'react';
 import { Form, Input, Select, Button, DatePicker } from 'antd';
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { AuthContext } from '../../context/authentication-context';
 import dayjs from 'dayjs';
 
@@ -62,11 +62,12 @@ const SignUpForm: FC = () => {
     let response: AxiosResponse<{ token: string }> | undefined;
     try {
       response = await axios.post(
-        process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL + '/signup',
+        import.meta.env.VITE_AUTH_SERVICE_BACKEND_URL + '/signup',
         correctedValues
       );
       console.log(response?.data);
     } catch (error) {
+      console.error(error)
       if (axios.isAxiosError(error)) {
         console.log(error.response?.data?.message);
       }

@@ -17,11 +17,12 @@ const LoginForm: FC = () => {
     let response: AxiosResponse<{token: string}> | undefined;
     try {
       response = await axios.post(
-        process.env.REACT_APP_AUTH_SERVICE_BACKEND_URL + '/signin',
+        import.meta.env.VITE_AUTH_SERVICE_BACKEND_URL + '/signin',
         values
       );
       console.log(response?.data);
     } catch (error) {
+       console.error(error)
       if (axios.isAxiosError(error)) {
         console.log(error?.response?.data.message);
       }
