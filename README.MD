@@ -1,8 +1,11 @@
 This is a project I am currently working on.
 
-Suggested Backend Design V1
+Suggested Backend Design
 
 ![Backend Architecture](https://github.com/DimuthuWeerathunga/social-network/blob/main/Backend%20Architecture%20V2.jpg?raw=true)
+
+
+Recommendation System
 
 ![Recommendation System](https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true)
 
