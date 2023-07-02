@@ -1,3 +1,4 @@
+import { DatabaseConnectionError } from '@dw-sn/common';
 import { app } from './app';
 import { prismaClient } from './util/prisma-client';
 

@@ -306,6 +306,14 @@
   dependencies:
     "@jridgewell/trace-mapping" "0.3.9"
 
+"@dw-sn/common@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@dw-sn/common/-/common-1.0.1.tgz#e26cd032b2b23e8e6aef109efcaec5fdb0252024"
+  integrity sha512-wUN3CQ79h5422aOz4m7Hchn3dJEgSfcRyZ/pZdOGMRfR2SPfpnGShJpAXLG097hOu2ou4nLpQK/YEyG5mm9g/Q==
+  dependencies:
+    "@types/express" "^4.17.17"
+    express "^4.18.2"
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
