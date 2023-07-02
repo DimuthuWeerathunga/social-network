@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../util/prisma-client';
 import { Gender } from '../util/genders';
+import { BadRequestError } from '@dw-sn/common';
 
 const router = express.Router();
 
@@ -15,21 +16,25 @@ router.post('/api/users/signup', async (req: Request, res: Response) => {
   });
 
   if (existingUser) {
-    throw new Error('Email already exists');
+    throw new BadRequestError('Account with the email already exists');
   }
 
   // password hashing logic here
 
-  const user = await prismaClient.users.create({
-    data: {
-      name,
-      email,
-      password,
-      birthday: new Date(birthday),
-      bio,
-      gender: Gender[gender as Gender],
-    },
-  });
+  try {
+    const user = await prismaClient.users.create({
+      data: {
+        name,
+        email,
+        password,
+        birthday: new Date(birthday),
+        bio,
+        gender: Gender[gender as Gender],
+      },
+    });
+  } catch (e) {
+    throw new BadRequestError('Creating user failed check your input');
+  }
 
   //   generate and send the token
 
