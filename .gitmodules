@@ -1,0 +1,3 @@
+[submodule "sn-node-common"]
+	path = sn-node-common
+	url = git@github.com:DimuthuWeerathunga/sn-node-common.git
