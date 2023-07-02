@@ -2,13 +2,11 @@
   "name": "users-service",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
-  "module": "es2022",
   "prisma": {
     "schema": "./src/prisma/schema.prisma"
   },
   "scripts": {
-    "start": "ts-node-dev ./src/index.ts",
+    "start": "ts-node-dev src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
   "jest": {

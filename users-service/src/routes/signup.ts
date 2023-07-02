@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../util/prisma-client';
+import { Gender } from '../util/genders';
 
 const router = express.Router();
 
@@ -34,7 +35,14 @@ router.post('/api/users/signup', async (req: Request, res: Response) => {
 
   //   temporarily send the created user
 
-  res.status(201).json(user);
+  res.status(201).json({
+    message: 'user created',
+    user: {
+      name,
+      email,
+      bio,
+    },
+  });
 });
 
 export { router as signupRouter };
