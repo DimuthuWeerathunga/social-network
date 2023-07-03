@@ -18,5 +18,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
+  await prismaClient.users.deleteMany();
+  await prismaClient.followers.deleteMany();
   await prismaClient.$disconnect();
 });
