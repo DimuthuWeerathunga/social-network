@@ -63,6 +63,7 @@ router.post(
         },
       });
     } catch (e) {
+      console.error(e);
       throw new BadRequestError('Creating user failed check your input');
     }
 

@@ -3,7 +3,7 @@ import { prismaClient } from '../util/prisma-client';
 import request from 'supertest';
 
 declare global {
-  var signin: () => Promise<string[]>;
+  var getCookie: () => Promise<string[]>;
 }
 
 beforeAll(async () => {
@@ -15,17 +15,17 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await prismaClient.users.deleteMany();
   await prismaClient.followers.deleteMany();
+  await prismaClient.users.deleteMany();
 });
 
 afterAll(async () => {
-  await prismaClient.users.deleteMany();
   await prismaClient.followers.deleteMany();
+  await prismaClient.users.deleteMany();
   await prismaClient.$disconnect();
 });
 
-global.signin = async () => {
+global.getCookie = async () => {
   const response = await request(app)
     .post('/api/users/signup')
     .send({
@@ -38,7 +38,6 @@ global.signin = async () => {
       gender: 'MALE',
     })
     .expect(201);
-  // console.log('from global sign in', response.body);
 
   const cookie = response.get('Set-Cookie');
 
