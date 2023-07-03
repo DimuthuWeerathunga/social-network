@@ -1,8 +1,5 @@
 import { app } from './app';
 import { prismaClient } from './util/prisma-client';
-import dotenv from 'dotenv';
-
-dotenv.config();
 
 (async () => {
   try {
