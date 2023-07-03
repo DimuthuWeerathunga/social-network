@@ -6,8 +6,10 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "scripts": {
-    "start": "ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts",
-    "test": "jest --watchAll --no-cache"
+    "start": "dotenv -e .env ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts",
+    "test": "dotenv -e .env.test jest --watchAll --no-cache",
+    "migrate:dev": "dotenv -e .env prisma migrate deploy",
+    "migrate:test": "dotenv -e .env.test prisma migrate deploy"
   },
   "jest": {
     "preset": "ts-jest",
@@ -26,7 +28,7 @@
     "@types/jsonwebtoken": "^9.0.2",
     "bcrypt": "^5.1.0",
     "cookie-session": "^2.0.0",
-    "dotenv": "^16.3.1",
+    "dotenv-cli": "^7.2.1",
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "express-validator": "^7.0.1",
