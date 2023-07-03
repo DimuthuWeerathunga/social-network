@@ -17,7 +17,7 @@ router.post(
         },
       });
       if (existingUser) {
-        throw new Error('Account with this email address already exists');
+        throw new Error('An account with this email address already exists');
       }
     }),
     body('password')
