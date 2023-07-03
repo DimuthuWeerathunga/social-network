@@ -1,8 +1,10 @@
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../util/prisma-client';
 import { Gender } from '../util/genders';
-import { BadRequestError, validateRequest } from '@dw-sn/common';
+import { BadRequestError, getJwtKey, validateRequest } from '@dw-sn/common';
 import { body } from 'express-validator';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
@@ -31,14 +33,16 @@ router.post(
   validateRequest,
   async (req: Request, res: Response) => {
     const { email, password, name, birthday, bio, gender } = req.body;
-    // password hashing logic here
 
+    const hashedPw = await bcrypt.hash(password, 12);
+
+    let user;
     try {
-      const user = await prismaClient.users.create({
+      user = await prismaClient.users.create({
         data: {
           name,
           email,
-          password,
+          password: hashedPw,
           birthday: new Date(birthday),
           bio,
           gender: Gender[gender as Gender],
@@ -48,16 +52,23 @@ router.post(
       throw new BadRequestError('Creating user failed check your input');
     }
 
-    //   generate and send the token
+    //   generate and send the token cookie
+    const userIdString = user.id.toString();
+    const token = jwt.sign(
+      {
+        id: userIdString,
+        email: user.email,
+      },
+      getJwtKey()
+    );
 
-    //   temporarily send the created user
+    req.session = { token };
 
     res.status(201).json({
       message: 'user created',
       user: {
         name,
         email,
-        bio,
       },
     });
   }
