@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../app';
 
 it('returns a 201 on successful signup', async () => {
-  return request(app)
+  const response = await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -14,10 +14,11 @@ it('returns a 201 on successful signup', async () => {
       gender: 'MALE',
     })
     .expect(201);
+  // console.log('from signup test 201 signup', response.body);
 });
 
 it('returns a 400 with an invalid email', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -32,7 +33,7 @@ it('returns a 400 with an invalid email', async () => {
 });
 
 it('returns a 400 with an invalid password', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -100,7 +101,7 @@ it('disallows duplicate emails', async () => {
 });
 
 it('returns a 400 with missing name', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       email: 'john@gmail.com',
@@ -114,7 +115,7 @@ it('returns a 400 with missing name', async () => {
 });
 
 it('returns a 400 when the birthday is in the future', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
