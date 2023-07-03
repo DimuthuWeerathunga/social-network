@@ -6,7 +6,7 @@
     "schema": "./src/prisma/schema.prisma"
   },
   "scripts": {
-    "start": "ts-node-dev src/index.ts",
+    "start": "ts-node-dev --respawn --transpile-only --exit-child --watch src src/index.ts",
     "test": "jest --watchAll --no-cache"
   },
   "jest": {
