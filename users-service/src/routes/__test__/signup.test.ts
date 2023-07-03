@@ -125,7 +125,7 @@ it('returns a 400 when the birthday is in the future', async () => {
       bio: 'Hello there',
       gender: 'MALE',
     })
-    .expect(201);
+    .expect(400);
 });
 
 it('sets a cookie after successful signup', async () => {

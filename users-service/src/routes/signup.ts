@@ -39,11 +39,10 @@ router.post(
         } catch (e) {
           throw new Error('Invalid birthday');
         }
-        if (date.getSeconds() > new Date().getSeconds()) {
+        if (date.getTime() > new Date().getTime()) {
           throw new Error('Birthday must be in the past');
         }
-      })
-      .withMessage('Invalid birthday'),
+      }),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
