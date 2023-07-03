@@ -9,5 +9,8 @@ it('returns a 200 when the user is logged in', async () => {
     .set('Cookie', cookie)
     .send()
     .expect(200);
-  // console.log('from current user test', resposne.body);
+});
+
+it('returns a 200 when the user is logged in', async () => {
+  await request(app).get('/api/users/currentuser').send().expect(400);
 });
