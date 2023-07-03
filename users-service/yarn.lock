@@ -307,12 +307,13 @@
     "@jridgewell/trace-mapping" "0.3.9"
 
 "@dw-sn/common@^1.0.1":
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/@dw-sn/common/-/common-1.0.5.tgz#247b5b00887f86a303e40f4e43128a740cd5e8df"
-  integrity sha512-R4p9xd/EEx1V39G7Xes9VZRYP+1k6ECgQb7z7jeSCU8MNhUs18o9jZawR8lNhol7ZCf4xCtXa1EmamIOOL3Ceg==
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@dw-sn/common/-/common-1.0.8.tgz#9d137ae4388c705f20e19388b8bae4fab2054bb7"
+  integrity sha512-pesvZAKV6+eAfNdFl4OyaX+nx1arYYEKefp6z6+lOyzfIKTVxKSbEHDOBfcAdhIb23rfCtFl5BWqL8gSfXAbEA==
   dependencies:
     "@types/express" "^4.17.17"
     express "^4.18.2"
+    express-validator "^7.0.1"
 
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
