@@ -29,6 +29,21 @@ router.post(
     body()
       .custom((body) => body.password === body.confirmPassword)
       .withMessage('Two password fields do not match'),
+    body('name').trim().notEmpty().withMessage('Name field is empty'),
+    body('birthday')
+      .trim()
+      .custom(async (birthday) => {
+        let date;
+        try {
+          date = new Date(birthday);
+        } catch (e) {
+          throw new Error('Invalid birthday');
+        }
+        if (date.getSeconds() > new Date().getSeconds()) {
+          throw new Error('Birthday must be in the past');
+        }
+      })
+      .withMessage('Invalid birthday'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {

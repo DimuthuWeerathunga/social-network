@@ -99,6 +99,35 @@ it('disallows duplicate emails', async () => {
     .expect(400);
 });
 
+it('returns a 400 with missing name', async () => {
+  return request(app)
+    .post('/api/users/signup')
+    .send({
+      email: 'john@gmail.com',
+      password: 'password',
+      confirmPassword: 'password',
+      birthday: '2003-07-02T16:03:02.644Z',
+      bio: 'Hello there',
+      gender: 'MALE',
+    })
+    .expect(400);
+});
+
+it('returns a 400 when the birthday is in the future', async () => {
+  return request(app)
+    .post('/api/users/signup')
+    .send({
+      name: 'John Doe',
+      email: 'john@gmail.com',
+      password: 'password',
+      confirmPassword: 'password',
+      birthday: '2033-07-02T16:03:02.644Z',
+      bio: 'Hello there',
+      gender: 'MALE',
+    })
+    .expect(201);
+});
+
 it('sets a cookie after successful signup', async () => {
   const response = await request(app)
     .post('/api/users/signup')
