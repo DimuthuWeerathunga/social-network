@@ -5,6 +5,7 @@ import { signupRouter } from './routes/signup';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { currentUserRouter } from './routes/current-user';
 import { signinRouter } from './routes/signin';
+import { signoutRouter } from './routes/signout';
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.use(
 app.use(signupRouter);
 app.use(currentUserRouter);
 app.use(signinRouter);
+app.use(signoutRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
