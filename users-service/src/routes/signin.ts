@@ -10,11 +10,17 @@ router.post('/api/users/signin', async (req: Request, res: Response) => {
   const { email, password } = req.body;
 
   // check if there is a user available in the db
-  const retrievedUser = await prismaClient.users.findUnique({
-    where: {
-      email,
-    },
-  });
+  let retrievedUser;
+  try {
+    retrievedUser = await prismaClient.users.findUnique({
+      where: {
+        email,
+      },
+    });
+  } catch (e) {
+    console.error(e);
+    throw new BadRequestError('Invalid credentials');
+  }
   if (!retrievedUser) {
     throw new BadRequestError('Invalid credentials');
   }
