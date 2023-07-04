@@ -4,6 +4,7 @@ import cookieSession from 'cookie-session';
 import { signupRouter } from './routes/signup';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { currentUserRouter } from './routes/current-user';
+import { signinRouter } from './routes/signin';
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(
 
 app.use(signupRouter);
 app.use(currentUserRouter);
+app.use(signinRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
