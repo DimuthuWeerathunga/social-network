@@ -16,7 +16,7 @@ router.get(
       throw new BadRequestError('User might not be authenticated');
     }
 
-    const retrievedUser = await prismaClient.users.findUnique({
+    const retrievedUser = await prismaClient.user.findUnique({
       where: {
         id: +req.currentUser!.id,
       },

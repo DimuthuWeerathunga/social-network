@@ -12,7 +12,7 @@ router.post('/api/users/signin', async (req: Request, res: Response) => {
   // check if there is a user available in the db
   let retrievedUser;
   try {
-    retrievedUser = await prismaClient.users.findUnique({
+    retrievedUser = await prismaClient.user.findUnique({
       where: {
         email,
       },

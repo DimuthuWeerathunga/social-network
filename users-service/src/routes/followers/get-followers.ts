@@ -18,7 +18,7 @@ router.get(
 
     let user;
     try {
-      user = await prismaClient.users.findUnique({
+      user = await prismaClient.user.findUnique({
         where: {
           id: +req.currentUser.id,
         },

@@ -13,7 +13,7 @@ router.post(
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('email').custom(async (email) => {
-      const existingUser = await prismaClient.users.findUnique({
+      const existingUser = await prismaClient.user.findUnique({
         where: {
           email,
         },
@@ -52,7 +52,7 @@ router.post(
 
     let user;
     try {
-      user = await prismaClient.users.create({
+      user = await prismaClient.user.create({
         data: {
           name,
           email,
