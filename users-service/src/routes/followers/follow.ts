@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   InternalServerError,
   UnAuthorizedError,
   currentUser,
@@ -19,6 +20,10 @@ router.post(
     // implement follow logic here
     if (!req.currentUser) {
       throw new UnAuthorizedError();
+    }
+
+    if (+req.currentUser.id === req.body.followeeId) {
+      throw new BadRequestError('A user cannot follow himself');
     }
 
     try {
