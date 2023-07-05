@@ -7,6 +7,7 @@ import { currentUserRouter } from './routes/auth/current-user';
 import { signinRouter } from './routes/auth/signin';
 import { signoutRouter } from './routes/auth/signout';
 import { followRouter } from './routes/followers/follow';
+import { getFollowersRouter } from './routes/followers/get-followers';
 
 const app = express();
 
@@ -24,6 +25,7 @@ app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
 app.use(followRouter);
+app.use(getFollowersRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
