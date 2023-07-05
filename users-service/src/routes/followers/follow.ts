@@ -33,6 +33,6 @@ router.post(
       console.error(e);
       throw new InternalServerError();
     }
-    res.status(201).send();
+    res.status(201).send({ message: 'Relationship added' });
   }
 );
