@@ -36,3 +36,5 @@ router.post(
     res.status(201).send({ message: 'Relationship added' });
   }
 );
+
+export { router as followRouter };

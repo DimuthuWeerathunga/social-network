@@ -6,6 +6,7 @@ import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { currentUserRouter } from './routes/auth/current-user';
 import { signinRouter } from './routes/auth/signin';
 import { signoutRouter } from './routes/auth/signout';
+import { followRouter } from './routes/followers/follow';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(signupRouter);
 app.use(currentUserRouter);
 app.use(signinRouter);
 app.use(signoutRouter);
+app.use(followRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
