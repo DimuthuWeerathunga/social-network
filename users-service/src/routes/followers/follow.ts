@@ -14,7 +14,7 @@ const router = express.Router();
 router.post(
   '/api/users/follow',
   currentUser,
-  [body('followeeId').notEmpty().withMessage('Bad request')],
+  [body('followeeId').isNumeric().withMessage('Bad request')],
   validateRequest,
   async (req: Request, res: Response) => {
     // implement follow logic here
@@ -22,16 +22,11 @@ router.post(
       throw new UnAuthorizedError();
     }
 
-    let followerIdInt;
-    let followeeIdInt;
     try {
-      followerIdInt = +req.currentUser.id;
-      followeeIdInt = +req.body.followeeId;
-
       await prismaClient.followers.create({
         data: {
-          followee_id: followeeIdInt,
-          follower_id: followerIdInt,
+          followee_id: req.body.followeeId,
+          follower_id: +req.currentUser.id,
         },
       });
     } catch (e) {
