@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { prismaClient } from '../util/prisma-client';
+import { prismaClient } from '../../util/prisma-client';
 import { BadRequestError, InternalServerError, getJwtKey } from '@dw-sn/common';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';

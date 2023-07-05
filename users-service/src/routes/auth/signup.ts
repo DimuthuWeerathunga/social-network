@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import { prismaClient } from '../util/prisma-client';
-import { Gender } from '../util/genders';
+import { prismaClient } from '../../util/prisma-client';
+import { Gender } from '../../util/genders';
 import { BadRequestError, getJwtKey, validateRequest } from '@dw-sn/common';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';

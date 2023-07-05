@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../../app';
+import { app } from '../../../app';
 
 it('returns a 200 when the user is logged in', async () => {
   const cookie = await global.getCookie();

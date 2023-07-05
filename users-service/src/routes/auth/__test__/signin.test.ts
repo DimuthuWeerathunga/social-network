@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app } from '../../app';
+import { app } from '../../../app';
 
 it('expect a 200 and cookie to be received on successful login', async () => {
   await global.getCookie();

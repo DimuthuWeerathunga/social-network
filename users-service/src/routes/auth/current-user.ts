@@ -4,7 +4,7 @@ import {
   InternalServerError,
   currentUser,
 } from '@dw-sn/common';
-import { prismaClient } from '../util/prisma-client';
+import { prismaClient } from '../../util/prisma-client';
 
 const router = express.Router();
 
