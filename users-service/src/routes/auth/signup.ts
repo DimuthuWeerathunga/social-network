@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
-import { prismaClient } from '../util/prisma-client';
-import { Gender } from '../util/genders';
+import { prismaClient } from '../../util/prisma-client';
+import { Gender } from '../../util/genders';
 import { BadRequestError, getJwtKey, validateRequest } from '@dw-sn/common';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';
@@ -13,7 +13,7 @@ router.post(
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('email').custom(async (email) => {
-      const existingUser = await prismaClient.users.findUnique({
+      const existingUser = await prismaClient.user.findUnique({
         where: {
           email,
         },
@@ -29,6 +29,20 @@ router.post(
     body()
       .custom((body) => body.password === body.confirmPassword)
       .withMessage('Two password fields do not match'),
+    body('name').trim().notEmpty().withMessage('Name field is empty'),
+    body('birthday')
+      .trim()
+      .custom(async (birthday) => {
+        let date;
+        try {
+          date = new Date(birthday);
+        } catch (e) {
+          throw new Error('Invalid birthday');
+        }
+        if (date.getTime() > new Date().getTime()) {
+          throw new Error('Birthday must be in the past');
+        }
+      }),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
@@ -38,7 +52,7 @@ router.post(
 
     let user;
     try {
-      user = await prismaClient.users.create({
+      user = await prismaClient.user.create({
         data: {
           name,
           email,
@@ -49,6 +63,7 @@ router.post(
         },
       });
     } catch (e) {
+      console.error(e);
       throw new BadRequestError('Creating user failed check your input');
     }
 

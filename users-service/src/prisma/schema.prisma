@@ -15,7 +15,7 @@ enum Gender {
   FEMALE
 }
 
-model Users {
+model User {
   id        BigInt      @id @default(autoincrement())
   name      String      @db.VarChar(255)
   email     String      @unique @db.VarChar(255)
@@ -23,14 +23,15 @@ model Users {
   birthday  DateTime
   bio       String
   gender    Gender
-  followers Followers[] @relation(name: "Followers")
-  followees Followers[] @relation(name: "Followees")
+  followers Follow[] @relation("Followee")
+  followees Follow[] @relation("Follower")
 }
 
-model Followers {
-  followee    Users  @relation(name: "Followees", fields: [followee_id], references: [id])
+model Follow {
+  followee    User  @relation(name: "Followee", fields: [followee_id], references: [id])
   followee_id BigInt
-  follower    Users  @relation(name: "Followers", fields: [follower_id], references: [id])
+  follower    User  @relation(name: "Follower", fields: [follower_id], references: [id])
   follower_id BigInt
+  followedAt  DateTime @default(now())
   @@id([followee_id, follower_id])
 }

@@ -1,8 +1,8 @@
 import request from 'supertest';
-import { app } from '../../app';
+import { app } from '../../../app';
 
 it('returns a 201 on successful signup', async () => {
-  return request(app)
+  const response = await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -14,10 +14,11 @@ it('returns a 201 on successful signup', async () => {
       gender: 'MALE',
     })
     .expect(201);
+  // console.log('from signup test 201 signup', response.body);
 });
 
 it('returns a 400 with an invalid email', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -32,7 +33,7 @@ it('returns a 400 with an invalid email', async () => {
 });
 
 it('returns a 400 with an invalid password', async () => {
-  return request(app)
+  await request(app)
     .post('/api/users/signup')
     .send({
       name: 'John Doe',
@@ -93,6 +94,35 @@ it('disallows duplicate emails', async () => {
       password: 'password',
       confirmPassword: 'password',
       birthday: '2003-07-02T16:03:02.644Z',
+      bio: 'Hello there',
+      gender: 'MALE',
+    })
+    .expect(400);
+});
+
+it('returns a 400 with missing name', async () => {
+  await request(app)
+    .post('/api/users/signup')
+    .send({
+      email: 'john@gmail.com',
+      password: 'password',
+      confirmPassword: 'password',
+      birthday: '2003-07-02T16:03:02.644Z',
+      bio: 'Hello there',
+      gender: 'MALE',
+    })
+    .expect(400);
+});
+
+it('returns a 400 when the birthday is in the future', async () => {
+  await request(app)
+    .post('/api/users/signup')
+    .send({
+      name: 'John Doe',
+      email: 'john@gmail.com',
+      password: 'password',
+      confirmPassword: 'password',
+      birthday: '2033-07-02T16:03:02.644Z',
       bio: 'Hello there',
       gender: 'MALE',
     })
