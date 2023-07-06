@@ -1,6 +1,7 @@
 import {
   InternalServerError,
   currentUser,
+  requireAuth,
   validateRequest,
 } from '@dw-sn/common';
 import express, { Request, Response } from 'express';
@@ -12,6 +13,7 @@ const router = express.Router();
 router.post(
   '/api/posts',
   currentUser,
+  requireAuth,
   [
     body('title').notEmpty().withMessage('A title should be provided'),
     body('content').notEmpty().withMessage('Content must not be blank'),
