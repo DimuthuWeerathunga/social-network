@@ -11,6 +11,6 @@ it('returns a 200 when the user is logged in', async () => {
     .expect(200);
 });
 
-it('returns a 200 when the user is logged in', async () => {
-  await request(app).get('/api/users/currentuser').send().expect(400);
+it('returns a 401 when the user is not logged in', async () => {
+  await request(app).get('/api/users/currentuser').send().expect(401);
 });
