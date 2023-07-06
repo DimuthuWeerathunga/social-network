@@ -1,4 +1,8 @@
-import { currentUser, validateRequest } from '@dw-sn/common';
+import {
+  InternalServerError,
+  currentUser,
+  validateRequest,
+} from '@dw-sn/common';
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { prismaClient } from '../../util/prisma-client';
@@ -15,7 +19,7 @@ router.post(
       .isNumeric()
       .withMessage('topicId must be a number')
       .custom(async (topicId: number) => {
-        // query the database to see if there is a topic with this id
+        // query the database to see if there is a topic with the given topic id
         try {
           const retrievedTopic = await prismaClient.topic.findUnique({
             where: {
@@ -30,9 +34,37 @@ router.post(
           throw new Error('Topic does not exist!');
         }
       }),
+    body('imageUrls')
+      .isArray()
+      .withMessage('Image url format should be an array'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
     // create a new post
+    const { topicId, title, content, imageUrls } = req.body;
+
+    let post;
+
+    try {
+      post = await prismaClient.post.create({
+        data: {
+          topic_id: topicId,
+          title,
+          content,
+          image_urls: imageUrls,
+        },
+      });
+    } catch (e) {
+      console.error(e);
+      throw new InternalServerError();
+    }
+
+    const postToBeSent = {
+      ...post,
+      id: +post.id.toString(),
+      topicId: +post.topic_id.toString(),
+    };
+
+    res.status(201).json(postToBeSent);
   }
 );
