@@ -1,9 +1,5 @@
 import express, { Request, Response } from 'express';
-import {
-  BadRequestError,
-  InternalServerError,
-  currentUser,
-} from '@dw-sn/common';
+import { InternalServerError, currentUser, requireAuth } from '@dw-sn/common';
 import { prismaClient } from '../../util/prisma-client';
 
 const router = express.Router();
@@ -11,11 +7,8 @@ const router = express.Router();
 router.get(
   '/api/users/currentuser',
   currentUser,
+  requireAuth,
   async (req: Request, res: Response) => {
-    if (!req.currentUser) {
-      throw new BadRequestError('User might not be authenticated');
-    }
-
     const retrievedUser = await prismaClient.user.findUnique({
       where: {
         id: +req.currentUser!.id,
