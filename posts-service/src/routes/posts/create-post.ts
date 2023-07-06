@@ -38,7 +38,7 @@ router.post(
       }),
     body('imageUrls')
       .isArray()
-      .withMessage('Image url format should be an array'),
+      .withMessage('Image url format should be an array of strings'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
