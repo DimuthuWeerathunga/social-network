@@ -15,7 +15,7 @@ model post {
   topic      topic       @relation(fields: [topic_id], references: [id])
   topic_id   BigInt
   title      String      @db.VarChar(255)
-  content    String
+  content    String     
   image_urls String[]
   likes      post_like[]
   created_at DateTime
