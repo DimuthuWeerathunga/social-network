@@ -307,9 +307,9 @@
     "@jridgewell/trace-mapping" "0.3.9"
 
 "@dw-sn/common@^1.0.1":
-  version "1.0.17"
-  resolved "https://registry.yarnpkg.com/@dw-sn/common/-/common-1.0.17.tgz#8c1f0fc895d05e65236ff7751194a4c5c84a5f2e"
-  integrity sha512-6N8ZcSsJ/xen/PyELTYIqDN0AFhfgmZqgKCNieYNEjD9w+gRLfqN35ZsZx6QeaH9rKhtnD8TqcFMmYckm+QuZQ==
+  version "1.0.21"
+  resolved "https://registry.yarnpkg.com/@dw-sn/common/-/common-1.0.21.tgz#680676cbd59a346d4113ddf4e2025276ae22b797"
+  integrity sha512-HFIujq87SYPERElKthasv0VehJHqKU7HkBZReb+pCvm3C55/4dYyUAOWQOghT2K9aHO+PqcNhObyVqBgKKtywQ==
   dependencies:
     "@types/cookie-session" "^2.0.44"
     "@types/express" "^4.17.17"

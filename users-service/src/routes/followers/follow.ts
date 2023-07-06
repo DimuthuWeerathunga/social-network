@@ -1,8 +1,8 @@
 import {
   BadRequestError,
   InternalServerError,
-  UnAuthorizedError,
   currentUser,
+  requireAuth,
   validateRequest,
 } from '@dw-sn/common';
 import express, { Request, Response } from 'express';
@@ -14,15 +14,11 @@ const router = express.Router();
 router.post(
   '/api/users/follow',
   currentUser,
+  requireAuth,
   [body('followeeId').isNumeric().withMessage('Bad request')],
   validateRequest,
   async (req: Request, res: Response) => {
-    // implement follow logic here
-    if (!req.currentUser) {
-      throw new UnAuthorizedError();
-    }
-
-    if (+req.currentUser.id === req.body.followeeId) {
+    if (+req.currentUser!.id === req.body.followeeId) {
       throw new BadRequestError('A user cannot follow himself');
     }
 
@@ -30,7 +26,7 @@ router.post(
       await prismaClient.follow.create({
         data: {
           followee_id: req.body.followeeId,
-          follower_id: +req.currentUser.id,
+          follower_id: +req.currentUser!.id,
         },
       });
     } catch (e) {

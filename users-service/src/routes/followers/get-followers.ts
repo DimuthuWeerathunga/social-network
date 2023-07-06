@@ -1,8 +1,4 @@
-import {
-  InternalServerError,
-  UnAuthorizedError,
-  currentUser,
-} from '@dw-sn/common';
+import { InternalServerError, currentUser, requireAuth } from '@dw-sn/common';
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../../util/prisma-client';
 
@@ -11,16 +7,13 @@ const router = express.Router();
 router.get(
   '/api/users/followers',
   currentUser,
+  requireAuth,
   async (req: Request, res: Response) => {
-    if (!req.currentUser) {
-      throw new UnAuthorizedError();
-    }
-
     let user;
     try {
       user = await prismaClient.user.findUnique({
         where: {
-          id: +req.currentUser.id,
+          id: +req.currentUser!.id,
         },
         include: {
           followers: {
