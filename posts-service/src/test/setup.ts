@@ -7,6 +7,7 @@ interface GetCookie {
 
 declare global {
   var getCookie: GetCookie;
+  var createTopic: Promise<void>;
 }
 
 beforeAll(async () => {
