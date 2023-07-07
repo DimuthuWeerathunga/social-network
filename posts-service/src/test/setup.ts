@@ -1,13 +1,8 @@
 import { prismaClient } from '../util/prisma-client';
 
-interface GetCookie {
-  (): Promise<string[]>;
-  (name: string, email: string): Promise<string[]>;
-}
-
 declare global {
-  var getCookie: GetCookie;
-  var createTopic: Promise<void>;
+  var getCookie: () => Promise<string[]>;
+  var addTopic: () => Promise<number>;
 }
 
 beforeAll(async () => {
@@ -21,3 +16,7 @@ beforeAll(async () => {
 beforeEach(async () => {});
 
 afterAll(async () => {});
+
+global.addTopic = async () => {
+  // call the add topic endpoint
+};

@@ -70,3 +70,5 @@ router.post(
     res.status(201).json(postToBeSent);
   }
 );
+
+export { router as createPostRouter };

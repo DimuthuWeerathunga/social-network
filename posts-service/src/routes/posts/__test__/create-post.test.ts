@@ -1,5 +1,5 @@
 import request from 'supertest';
 
-it('successfully create a post with all inputs', async () => {
+it('successfully creates a post with all inputs', async () => {
   // create a topic first
 });
