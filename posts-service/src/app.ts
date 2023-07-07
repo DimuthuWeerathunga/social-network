@@ -3,6 +3,7 @@ import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { createPostRouter } from './routes/posts/create-post';
+import { addTopicRouter } from './routes/topics/add-topic';
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(
 );
 
 app.use(createPostRouter);
+app.use(addTopicRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

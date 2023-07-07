@@ -25,3 +25,5 @@ router.post('/api/posts/topics', async (req: Request, res: Response) => {
   }
   res.status(201).send();
 });
+
+export { router as addTopicRouter };
