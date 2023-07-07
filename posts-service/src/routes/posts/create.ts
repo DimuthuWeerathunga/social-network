@@ -62,6 +62,7 @@ router.post(
     const postToBeSent = {
       id: post.id.toString(),
       topicId: post.topic_id?.toString()!,
+      userId: post.user_id.toString(),
       title: post.title,
       content: post.content,
       imageUrls: post.image_urls,
