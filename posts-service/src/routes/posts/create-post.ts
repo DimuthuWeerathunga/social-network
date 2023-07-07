@@ -15,8 +15,6 @@ router.post(
   currentUser,
   requireAuth,
   [
-    body('title').notEmpty().withMessage('A title should be provided'),
-    body('content').notEmpty().withMessage('Content must not be blank'),
     body('topicId')
       .isNumeric()
       .withMessage('topicId must be a number')
@@ -36,6 +34,8 @@ router.post(
           throw new Error('Topic does not exist!');
         }
       }),
+    body('title').notEmpty().withMessage('A title should be provided'),
+    body('content').notEmpty().withMessage('Content must not be blank'),
     body('imageUrls')
       .isArray()
       .withMessage('Image url format should be an array of strings'),
