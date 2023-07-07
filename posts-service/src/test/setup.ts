@@ -36,7 +36,7 @@ afterAll(async () => {
 global.getCookie = () => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: 1n,
+    id: '1',
     email: 'john@gmail.com',
   };
 
@@ -60,7 +60,7 @@ global.addTopic = async () => {
   // call the add topic endpoint
   const response = await request(app)
     .post('/api/posts/topics')
-    .send({ id: 1, title: 'Test topic' })
+    .send({ id: '1', title: 'Test topic' })
     .expect(201);
 
   return response.body.id;

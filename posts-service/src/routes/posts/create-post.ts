@@ -15,25 +15,22 @@ router.post(
   currentUser,
   requireAuth,
   [
-    body('topicId')
-      .isNumeric()
-      .withMessage('topicId must be a number')
-      .custom(async (topicId: number) => {
-        // query the database to see if there is a topic with the given topic id
-        try {
-          const retrievedTopic = await prismaClient.topic.findUnique({
-            where: {
-              id: topicId,
-            },
-          });
-          if (!retrievedTopic) {
-            throw new Error();
-          }
-        } catch (e) {
-          console.error(e);
-          throw new Error('Topic does not exist!');
+    body('topicId').custom(async (topicId: number) => {
+      // query the database to see if there is a topic with the given topic id
+      try {
+        const retrievedTopic = await prismaClient.topic.findUnique({
+          where: {
+            id: BigInt(topicId),
+          },
+        });
+        if (!retrievedTopic) {
+          throw new Error();
         }
-      }),
+      } catch (e) {
+        console.error(e);
+        throw new Error('Topic does not exist!');
+      }
+    }),
     body('title').notEmpty().withMessage('A title should be provided'),
     body('content').notEmpty().withMessage('Content must not be blank'),
     body('imageUrls')
@@ -50,7 +47,7 @@ router.post(
     try {
       post = await prismaClient.post.create({
         data: {
-          topic_id: topicId,
+          topic_id: BigInt(topicId),
           title,
           content,
           image_urls: imageUrls,
@@ -62,9 +59,13 @@ router.post(
     }
 
     const postToBeSent = {
-      // ...post,
-      id: +post.id.toString(),
-      topicId: +post.topic_id?.toString()!,
+      id: post.id.toString(),
+      topicId: post.topic_id?.toString()!,
+      title: post.title,
+      content: post.content,
+      imageUrls: post.image_urls,
+      createdAt: post.created_at,
+      updatedAt: post.updated_at,
     };
 
     res.status(201).json(postToBeSent);

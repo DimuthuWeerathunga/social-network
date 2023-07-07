@@ -15,7 +15,7 @@ router.post('/api/posts/topics', async (req: Request, res: Response) => {
   try {
     await prismaClient.topic.create({
       data: {
-        id,
+        id: BigInt(id),
         title,
       },
     });
