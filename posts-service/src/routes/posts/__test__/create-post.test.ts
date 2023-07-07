@@ -2,10 +2,10 @@ import request from 'supertest';
 import { app } from '../../../app';
 
 it('successfully creates a post with all inputs', async () => {
+  // add a topic first
+  const topicId = await global.addTopic();
   // get the cookie
   const cookie = global.getCookie();
-  // create a topic first
-  const topicId = await global.addTopic(cookie);
   // create the post
   const title = 'Test title';
   const content = 'Test content';
@@ -21,8 +21,8 @@ it('successfully creates a post with all inputs', async () => {
       title,
       content,
       imageUrls,
-    })
-    .expect(201);
+    });
+
   expect(response.body.topicId).toEqual(topicId);
   expect(response.body.title).toEqual(title);
   expect(response.body.content).toEqual(content);

@@ -23,7 +23,7 @@ router.post('/api/posts/topics', async (req: Request, res: Response) => {
     console.error(e);
     throw new InternalServerError();
   }
-  res.status(201).send();
+  res.status(201).send({ id });
 });
 
 export { router as addTopicRouter };

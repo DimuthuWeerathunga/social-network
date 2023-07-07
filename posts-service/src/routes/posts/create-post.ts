@@ -62,7 +62,7 @@ router.post(
     }
 
     const postToBeSent = {
-      ...post,
+      // ...post,
       id: +post.id.toString(),
       topicId: +post.topic_id?.toString()!,
     };
