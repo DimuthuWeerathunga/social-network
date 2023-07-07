@@ -11,7 +11,7 @@ router.get(
   async (req: Request, res: Response) => {
     const retrievedUser = await prismaClient.user.findUnique({
       where: {
-        id: +req.currentUser!.id,
+        id: BigInt(req.currentUser!.id),
       },
     });
 

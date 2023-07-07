@@ -36,6 +36,6 @@ it('Should not allow a user to follow himself', async () => {
   await request(app)
     .post('/api/users/follow')
     .set('Cookie', johnCookie)
-    .send({ followeeId: +johnId.toString() })
+    .send({ followeeId: johnId.toString() })
     .expect(400);
 });
