@@ -12,7 +12,7 @@ import { prismaClient } from '../../util/prisma-client';
 const router = express.Router();
 
 router.post(
-  '/api/users/follow',
+  '/api/users/followers',
   currentUser,
   requireAuth,
   [body('followeeId').notEmpty().withMessage('Bad request')],
