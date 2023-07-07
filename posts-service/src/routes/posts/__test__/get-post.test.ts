@@ -35,3 +35,7 @@ it('Should, given a post in db it should return that post upon query', async () 
   expect(response.body.content).toEqual(content);
   expect(response.body.imageUrls).toEqual(imageUrls);
 });
+
+it('should return 404 for a post that is not in db', async () => {
+  await request(app).get('/api/posts/1').send().expect(404);
+});
