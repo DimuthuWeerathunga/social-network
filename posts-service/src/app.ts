@@ -2,9 +2,9 @@ import express from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
-import { createPostRouter } from './routes/posts/create-post';
+import { createPostRouter } from './routes/posts/create';
 import { addTopicRouter } from './routes/topics/add-topic';
-import { getPostRouter } from './routes/posts/get-post';
+import { getPostRouter } from './routes/posts/get';
 
 const app = express();
 
