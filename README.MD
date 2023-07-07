@@ -2,7 +2,7 @@ This is a project I am currently working on.
 
 Suggested Backend Design
 
-![Backend Architecture](https://github.com/DimuthuWeerathunga/social-network/blob/main/Backend%20Architecture%20V2.jpg?raw=true)
+![Backend Architecture](https://github.com/DimuthuWeerathunga/social-network/blob/main/Backend%20Architecture%20v3.jpg?raw=true)
 
 
 Recommendation System
