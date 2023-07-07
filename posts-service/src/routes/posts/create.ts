@@ -47,6 +47,7 @@ router.post(
     try {
       post = await prismaClient.post.create({
         data: {
+          user_id: BigInt(req.currentUser!.id),
           topic_id: BigInt(topicId),
           title,
           content,
