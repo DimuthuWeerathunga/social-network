@@ -4,9 +4,10 @@ import { prismaClient } from '../../util/prisma-client';
 
 const router = express.Router();
 
-router.get('/api/posts', async () => {
+router.get('/api/posts', async (req: Request, res: Response) => {
   // implement this function to filter posts
   // or create a graphql server for that
+  res.status(200).send({});
 });
 
 router.get('/api/posts/:postId', async (req: Request, res: Response) => {
