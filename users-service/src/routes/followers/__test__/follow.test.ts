@@ -16,7 +16,7 @@ it('Resturns a successful 201 on correct user follow action', async () => {
 
   //   jane follows john
   await request(app)
-    .post('/api/users/follow')
+    .post('/api/users/followers')
     .set('Cookie', janeCookie)
     .send({ followeeId: +johnId.toString() })
     .expect(201);
@@ -34,8 +34,8 @@ it('Should not allow a user to follow himself', async () => {
 
   //   john tries to follows john
   await request(app)
-    .post('/api/users/follow')
+    .post('/api/users/followers')
     .set('Cookie', johnCookie)
-    .send({ followeeId: +johnId.toString() })
+    .send({ followeeId: johnId.toString() })
     .expect(400);
 });

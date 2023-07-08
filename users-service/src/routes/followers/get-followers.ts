@@ -13,7 +13,7 @@ router.get(
     try {
       user = await prismaClient.user.findUnique({
         where: {
-          id: +req.currentUser!.id,
+          id: BigInt(req.currentUser!.id),
         },
         include: {
           followers: {
