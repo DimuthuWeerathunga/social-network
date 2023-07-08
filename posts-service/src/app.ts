@@ -3,7 +3,7 @@ import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { createPostRouter } from './routes/posts/create';
-import { addTopicRouter } from './routes/topics/add-topic';
+import { addTopicRouter } from './routes/topics/add';
 import { getPostRouter } from './routes/posts/get';
 
 const app = express();
