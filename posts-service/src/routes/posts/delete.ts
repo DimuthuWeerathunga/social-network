@@ -57,3 +57,5 @@ router.delete(
     res.status(204).json({ id: deletedPost.id.toString() });
   }
 );
+
+export { router as deletePostRouter };
