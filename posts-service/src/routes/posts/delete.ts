@@ -23,7 +23,7 @@ router.delete(
 
     let post;
     try {
-      post = await prismaClient.post.findFirst({
+      post = await prismaClient.post.findUnique({
         where: {
           id: BigInt(req.params.postId),
         },
