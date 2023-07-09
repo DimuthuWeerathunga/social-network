@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../../app';
 
 it('expect a 200 and cookie to be received on successful login', async () => {
-  await global.getCookie();
+  await global.signin();
 
   const response = await request(app)
     .post('/api/users/signin')
@@ -16,7 +16,7 @@ it('expect a 200 and cookie to be received on successful login', async () => {
 });
 
 it('expect a 400 with bad credentials', async () => {
-  await global.getCookie();
+  await global.signin();
 
   await request(app)
     .post('/api/users/signin')

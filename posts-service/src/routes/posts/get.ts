@@ -1,4 +1,8 @@
-import { BadRequestError, NotFoundError } from '@dw-sn/common';
+import {
+  BadRequestError,
+  InternalServerError,
+  NotFoundError,
+} from '@dw-sn/common';
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../../util/prisma-client';
 
@@ -23,11 +27,12 @@ router.get('/api/posts/:postId', async (req: Request, res: Response) => {
         id: BigInt(req.params.postId),
       },
     });
-    if (!post) {
-      throw new Error();
-    }
   } catch (e) {
     console.error(e);
+    throw new InternalServerError();
+  }
+
+  if (!post) {
     throw new NotFoundError();
   }
 

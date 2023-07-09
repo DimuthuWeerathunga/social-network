@@ -4,8 +4,8 @@ import { prismaClient } from '../../../util/prisma-client';
 import { User } from '@prisma/client';
 
 it('Resturns a successful 201 on correct user follow action', async () => {
-  const johnCookie = await getCookie('John Doe', 'john@gmail.com');
-  const janeCookie = await getCookie('Jane Doe', 'jane@gmail.com');
+  const johnCookie = await signin('John Doe', 'john@gmail.com');
+  const janeCookie = await signin('Jane Doe', 'jane@gmail.com');
 
   const { id: johnId } = (await prismaClient.user.findUnique({
     where: { email: 'john@gmail.com' },
@@ -23,7 +23,7 @@ it('Resturns a successful 201 on correct user follow action', async () => {
 });
 
 it('Should not allow a user to follow himself', async () => {
-  const johnCookie = await getCookie('John Doe', 'john@gmail.com');
+  const johnCookie = await signin('John Doe', 'john@gmail.com');
 
   const { id: johnId } = (await prismaClient.user.findUnique({
     where: { email: 'john@gmail.com' },

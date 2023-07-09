@@ -2,7 +2,7 @@ import request from 'supertest';
 import { app } from '../../../app';
 
 it('returns a 200 when the user is logged in', async () => {
-  const cookie = await global.getCookie();
+  const cookie = await global.signin();
 
   await request(app)
     .get('/api/users/currentuser')

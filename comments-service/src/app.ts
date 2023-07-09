@@ -2,10 +2,6 @@ import express from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
-import { createPostRouter } from './routes/posts/create';
-import { addTopicRouter } from './routes/topics/add';
-import { getPostRouter } from './routes/posts/get';
-import { deletePostRouter } from './routes/posts/delete';
 
 const app = express();
 
@@ -17,11 +13,6 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
-
-app.use(createPostRouter);
-app.use(addTopicRouter);
-app.use(getPostRouter);
-app.use(deletePostRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
