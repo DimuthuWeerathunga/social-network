@@ -5,7 +5,7 @@ it('Should, given a post in db it should return that post upon query', async () 
   // add a topic first
   const topicId = await global.addTopic();
   // get the cookie
-  const cookie = global.getCookie();
+  const cookie = global.signin();
   // create the post
   const title = 'Test title';
   const content = 'Test content';

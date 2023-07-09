@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { getJwtKey } from '@dw-sn/common';
 
 declare global {
-  var getCookie: () => string[];
+  var signin: () => string[];
   var addTopic: () => Promise<number>;
 }
 
@@ -33,7 +33,7 @@ afterAll(async () => {
   await prismaClient.$disconnect();
 });
 
-global.getCookie = () => {
+global.signin = () => {
   // Build a JWT payload.  { id, email }
   const payload = {
     id: '1',
