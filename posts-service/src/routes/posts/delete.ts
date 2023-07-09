@@ -37,7 +37,7 @@ router.delete(
       throw new NotFoundError();
     }
 
-    if (post.user_id !== BigInt(req.currentUser!.id)) {
+    if (post.user_id.toString() !== req.currentUser!.id) {
       throw new UnAuthorizedError();
     }
 
