@@ -26,14 +26,14 @@ router.delete(
       post = await prismaClient.post.findFirst({
         where: {
           id: BigInt(req.params.postId),
-          user_id: BigInt(req.currentUser!.id),
         },
       });
-      if (!post) {
-        throw new NotFoundError();
-      }
     } catch (e) {
       console.error(e);
+      throw new InternalServerError();
+    }
+
+    if (!post) {
       throw new NotFoundError();
     }
 
@@ -45,7 +45,7 @@ router.delete(
     try {
       deletedPost = await prismaClient.post.delete({
         where: {
-          id: BigInt(req.params.id),
+          id: BigInt(req.params.postId),
         },
       });
     } catch (e) {
@@ -54,7 +54,7 @@ router.delete(
     if (!deletedPost) {
       throw new InternalServerError();
     }
-    res.status(204).json({ id: deletedPost.id.toString() });
+    res.status(204).send();
   }
 );
 

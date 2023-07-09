@@ -4,8 +4,13 @@ import request from 'supertest';
 import jwt from 'jsonwebtoken';
 import { getJwtKey } from '@dw-sn/common';
 
+interface Signin {
+  (): string[];
+  (id: string, email: string): string[];
+}
+
 declare global {
-  var signin: () => string[];
+  var signin: Signin;
   var addTopic: () => Promise<number>;
 }
 
@@ -33,11 +38,11 @@ afterAll(async () => {
   await prismaClient.$disconnect();
 });
 
-global.signin = () => {
+global.signin = (id?: string, email?: string) => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: '1',
-    email: 'john@gmail.com',
+    id: id || '1',
+    email: email || 'john@gmail.com',
   };
 
   // Create the JWT!
