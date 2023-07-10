@@ -26,13 +26,16 @@ router.post(
           },
         });
         if (!post) {
-          throw new Error();
+          throw new Error(
+            'Failed to fetch the post which you are trying to comment on'
+          );
         }
       } catch (e) {
         console.error(e);
-        throw new Error(
-          'Failed to fetch the post which you are trying to comment on'
-        );
+        if (e instanceof Error) {
+          throw new Error(e.message);
+        }
+        throw new Error('Unknown error validating post id');
       }
     }),
     body('content').notEmpty().withMessage('Empty comments are not allowed'),
