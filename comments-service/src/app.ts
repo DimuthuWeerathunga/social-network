@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
+import { createCommentRouter } from './routes/create';
 
 const app = express();
 
@@ -13,6 +14,8 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
+app.use(createCommentRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
