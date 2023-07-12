@@ -42,10 +42,10 @@ it('should retrieve number of likes for a given comment', async () => {
     .send()
     .expect(201);
 
-  const likeCountRes = await request(app)
+  const likesCountRes = await request(app)
     .get(`/api/comments/${commentCreateRes.body.id}/likes`)
     .send()
     .expect(200);
 
-  expect(likeCountRes.body.likesCount).toEqual(3);
+  expect(likesCountRes.body.likesCount).toEqual(3);
 });
