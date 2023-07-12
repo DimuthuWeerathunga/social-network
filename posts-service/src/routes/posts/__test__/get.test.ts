@@ -30,10 +30,10 @@ it('Should, given a post in db it should return that post upon query', async () 
     .send()
     .expect(200);
 
-  expect(response.body.topic_id).toEqual(topicId);
+  expect(response.body.topicId).toEqual(topicId);
   expect(response.body.title).toEqual(title);
   expect(response.body.content).toEqual(content);
-  expect(response.body.image_urls).toEqual(imageUrls);
+  expect(response.body.imageUrls).toEqual(imageUrls);
 });
 
 it('should return 404 for a post that is not in db', async () => {
