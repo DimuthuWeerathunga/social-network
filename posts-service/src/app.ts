@@ -8,6 +8,16 @@ import { getPostRouter } from './routes/posts/get';
 import { deletePostRouter } from './routes/posts/delete';
 import { likePostRouter } from './routes/posts/like';
 
+declare global {
+  interface BigInt {
+    toJSON: () => string;
+  }
+}
+
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
+
 const app = express();
 
 app.use(express.json());

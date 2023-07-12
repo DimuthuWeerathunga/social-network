@@ -36,18 +36,7 @@ router.get('/api/posts/:postId', async (req: Request, res: Response) => {
     throw new NotFoundError();
   }
 
-  const postToBeSent = {
-    id: post.id.toString(),
-    topicId: post.topic_id?.toString()!,
-    userId: post.user_id.toString(),
-    title: post.title,
-    content: post.content,
-    imageUrls: post.image_urls,
-    createdAt: post.created_at,
-    updatedAt: post.updated_at,
-  };
-
-  res.status(200).json(postToBeSent);
+  res.status(200).json(post);
 });
 
 export { router as getPostRouter };
