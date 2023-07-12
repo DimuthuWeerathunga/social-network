@@ -16,16 +16,25 @@ declare global {
 beforeAll(async () => {
   try {
     await prismaClient.$connect();
+    await prismaClient.post.deleteMany();
+    await prismaClient.comment.deleteMany();
+    await prismaClient.comment_like.deleteMany();
   } catch (e) {
     throw new Error('Failed to connect to db');
   }
 });
 
 beforeEach(async () => {
+  await prismaClient.post.deleteMany();
+  await prismaClient.comment.deleteMany();
+  await prismaClient.comment_like.deleteMany();
 });
 
 afterAll(async () => {
   await prismaClient.$disconnect();
+  await prismaClient.post.deleteMany();
+  await prismaClient.comment.deleteMany();
+  await prismaClient.comment_like.deleteMany();
 });
 
 global.signin = (id?: string, email?: string) => {

@@ -6,6 +6,7 @@ import { createPostRouter } from './routes/posts/create';
 import { addTopicRouter } from './routes/topics/add';
 import { getPostRouter } from './routes/posts/get';
 import { deletePostRouter } from './routes/posts/delete';
+import { likePostRouter } from './routes/posts/like';
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(createPostRouter);
 app.use(addTopicRouter);
 app.use(getPostRouter);
 app.use(deletePostRouter);
+app.use(likePostRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
