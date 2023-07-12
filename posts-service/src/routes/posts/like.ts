@@ -8,36 +8,41 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { prismaClient } from '../../util/prisma-client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
 router.post(
-  '/api/posts/likes',
+  '/api/posts/:postId/likes',
   currentUser,
   requireAuth,
-  [body('postId').notEmpty().withMessage('Post id not provided')],
-  validateRequest,
   async (req: Request, res: Response) => {
-    const { postId } = req.body;
-    let postIdBigInt;
-    try {
-      postIdBigInt = BigInt(postId);
-    } catch (e) {
-      console.error(e);
-      throw new BadRequestError('Invalid post id');
-    }
+    const { postId } = req.params;
 
+    let createdLike;
     try {
-      await prismaClient.post_like.create({
+      createdLike = await prismaClient.post_like.create({
         data: {
           user_id: BigInt(req.currentUser!.id),
-          post_id: postIdBigInt,
+          post_id: BigInt(postId),
         },
       });
+      if (!createdLike) {
+        throw new BadRequestError('Bad request');
+      }
     } catch (e) {
-      console.error(e);
-      throw new InternalServerError();
+      if (
+        e instanceof BadRequestError ||
+        e instanceof PrismaClientKnownRequestError
+      ) {
+        throw new BadRequestError('Bad request');
+      } else {
+        console.error(e);
+        throw new InternalServerError();
+      }
     }
+
+    res.status(201).send(createdLike);
   }
 );
 
