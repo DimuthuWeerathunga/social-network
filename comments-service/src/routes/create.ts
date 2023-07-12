@@ -57,7 +57,7 @@ router.post(
       throw new InternalServerError();
     }
     res.status(201).json({
-      id: comment.id.toString,
+      id: comment.id.toString(),
       content: comment.content,
     });
   }
