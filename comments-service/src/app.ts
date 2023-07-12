@@ -4,6 +4,7 @@ import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { createCommentRouter } from './routes/create';
 import { getCommentsRouter } from './routes/get';
+import { deleteCommentsRouter } from './routes/delete';
 
 declare global {
   interface BigInt {
@@ -28,6 +29,7 @@ app.use(
 
 app.use(createCommentRouter);
 app.use(getCommentsRouter);
+app.use(deleteCommentsRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
