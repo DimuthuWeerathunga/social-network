@@ -46,9 +46,9 @@ router.post(
     try {
       comment = await prismaClient.comment.create({
         data: {
-          user_id: BigInt(req.currentUser!.id),
-          post_id: BigInt(req.body.postId),
-          parent_id: req.body.parentId ? BigInt(req.body.parentId) : null,
+          userId: BigInt(req.currentUser!.id),
+          postId: BigInt(req.body.postId),
+          parentId: req.body.parentId ? BigInt(req.body.parentId) : null,
           content: req.body.content,
         },
       });
@@ -57,7 +57,7 @@ router.post(
       throw new InternalServerError();
     }
     res.status(201).json({
-      id: comment.id.toString,
+      id: comment.id.toString(),
       content: comment.content,
     });
   }

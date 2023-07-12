@@ -5,6 +5,9 @@ import { NotFoundError, errorHandler } from '@dw-sn/common';
 import { createCommentRouter } from './routes/create';
 import { getCommentsRouter } from './routes/get';
 import { deleteCommentsRouter } from './routes/delete';
+import { likeCommentRouter } from './routes/like';
+import { unlikeCommentRouter } from './routes/unlike';
+import { getCommentLikesRouter } from './routes/get-likes';
 
 declare global {
   interface BigInt {
@@ -30,6 +33,9 @@ app.use(
 app.use(createCommentRouter);
 app.use(getCommentsRouter);
 app.use(deleteCommentsRouter);
+app.use(likeCommentRouter);
+app.use(unlikeCommentRouter);
+app.use(getCommentLikesRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

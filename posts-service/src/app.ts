@@ -7,6 +7,18 @@ import { addTopicRouter } from './routes/topics/add';
 import { getPostRouter } from './routes/posts/get';
 import { deletePostRouter } from './routes/posts/delete';
 import { likePostRouter } from './routes/posts/like';
+import { getPostLikesRouter } from './routes/posts/get-likes';
+import { unlikePostRouter } from './routes/posts/unlike';
+
+declare global {
+  interface BigInt {
+    toJSON: () => string;
+  }
+}
+
+BigInt.prototype.toJSON = function () {
+  return this.toString();
+};
 
 const app = express();
 
@@ -24,6 +36,8 @@ app.use(addTopicRouter);
 app.use(getPostRouter);
 app.use(deletePostRouter);
 app.use(likePostRouter);
+app.use(unlikePostRouter);
+app.use(getPostLikesRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

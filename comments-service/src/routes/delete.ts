@@ -40,7 +40,7 @@ router.delete(
         throw new InternalServerError();
       }
     }
-    if (comment.user_id.toString() !== req.currentUser!.id) {
+    if (comment.userId.toString() !== req.currentUser!.id) {
       throw new UnAuthorizedError();
     }
 

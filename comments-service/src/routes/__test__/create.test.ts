@@ -7,7 +7,7 @@ it('should create a comment with valid input', async () => {
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
