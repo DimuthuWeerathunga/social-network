@@ -1,6 +1,11 @@
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../util/prisma-client';
-import { InternalServerError, NotFoundError } from '@dw-sn/common';
+import {
+  BadRequestError,
+  InternalServerError,
+  NotFoundError,
+} from '@dw-sn/common';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 
 const router = express.Router();
 
@@ -27,6 +32,8 @@ router.get(
     } catch (e) {
       if (e instanceof NotFoundError) {
         throw new NotFoundError();
+      } else if (e instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestError('Bad request');
       } else {
         console.error(e);
         throw new InternalServerError();
