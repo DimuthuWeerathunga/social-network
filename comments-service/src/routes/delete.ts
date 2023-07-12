@@ -44,6 +44,7 @@ router.delete(
       throw new UnAuthorizedError();
     }
 
+    // if so delete the comment (db will cascade delete child comments by the constraint itself)
     let deletedComment;
     try {
       deletedComment = await prismaClient.comment.delete({
