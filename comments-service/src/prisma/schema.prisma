@@ -9,27 +9,28 @@ datasource db {
 
 model comment {
   id        BigInt         @id @default(autoincrement())
-  user_id   BigInt
-  post      post           @relation(fields: [post_id], references: [id], onDelete: Cascade)
-  post_id   BigInt
-  parent    comment?       @relation("nesting", fields: [parent_id], references: [id], onDelete: Cascade)
-  parent_id BigInt?
+  userId   BigInt @map("user_id")
+  post      post           @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId   BigInt @map("post_id")
+  parent    comment?       @relation("nesting", fields: [parentId], references: [id], onDelete: Cascade)
+  parentId BigInt? @map("parent_id")
   children  comment[]      @relation("nesting")
   content   String
-  likes     comment_like[]
+  likes     commentLike[]
 }
 
 model post {
   id       BigInt    @id
-  user_id  BigInt
+  userId  BigInt  @map("user_id")
   comments comment[]
 }
 
-model comment_like {
-  user_id    BigInt
-  comment    comment  @relation(fields: [comment_id], references: [id])
-  comment_id BigInt
-  liked_at   DateTime @default(now())
+model commentLike {
+  userId    BigInt @map("user_id")
+  comment    comment  @relation(fields: [commentId], references: [id])
+  commentId BigInt @map("comment_id")
+  likedAt   DateTime @default(now()) @map("liked_at")
 
-  @@id([user_id, comment_id])
+  @@id([userId, commentId])
+  @@map("comment_like")
 }

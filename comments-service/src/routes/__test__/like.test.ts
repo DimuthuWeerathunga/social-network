@@ -7,7 +7,7 @@ it('should like a comment with correct comment id', async () => {
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
@@ -33,7 +33,7 @@ it('should not like a comment with correct comment id twice by same user', async
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 

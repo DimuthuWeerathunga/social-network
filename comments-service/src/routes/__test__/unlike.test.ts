@@ -7,7 +7,7 @@ it('should unlike a previously liked comment by a user', async () => {
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
@@ -39,7 +39,7 @@ it('should not allow to unlike a previously liked comment by a another user', as
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 

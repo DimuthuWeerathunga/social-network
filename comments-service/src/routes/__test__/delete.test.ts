@@ -7,7 +7,7 @@ it('should delete a comment with correct comment id and correct owner', async ()
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
@@ -35,7 +35,7 @@ it('should not delete a comment with correct comment id and incorrect owner', as
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 

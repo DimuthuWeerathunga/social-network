@@ -5,7 +5,7 @@ import {
   InternalServerError,
   NotFoundError,
 } from '@dw-sn/common';
-import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const router = express.Router();
 

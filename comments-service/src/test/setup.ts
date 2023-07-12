@@ -16,7 +16,7 @@ declare global {
 beforeAll(async () => {
   try {
     await prismaClient.$connect();
-    await prismaClient.comment_like.deleteMany();
+    await prismaClient.commentLike.deleteMany();
     await prismaClient.comment.deleteMany();
     await prismaClient.post.deleteMany();
   } catch (e) {
@@ -25,13 +25,13 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await prismaClient.comment_like.deleteMany();
+  await prismaClient.commentLike.deleteMany();
   await prismaClient.comment.deleteMany();
   await prismaClient.post.deleteMany();
 });
 
 afterAll(async () => {
-  await prismaClient.comment_like.deleteMany();
+  await prismaClient.commentLike.deleteMany();
   await prismaClient.comment.deleteMany();
   await prismaClient.post.deleteMany();
   await prismaClient.$disconnect();

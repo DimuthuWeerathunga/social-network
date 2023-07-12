@@ -7,7 +7,7 @@ it('shoudl retrieve a signle comment by id', async () => {
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
@@ -34,7 +34,7 @@ it('should retrieve comments with correct query params', async () => {
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 
@@ -88,7 +88,7 @@ it('should return a 404 error for comments which are not found for the given fil
   const post = await prismaClient.post.create({
     data: {
       id: BigInt(1),
-      user_id: BigInt(1),
+      userId: BigInt(1),
     },
   });
 

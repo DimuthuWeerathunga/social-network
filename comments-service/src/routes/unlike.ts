@@ -17,11 +17,11 @@ router.delete(
   async (req: Request, res: Response) => {
     let deletedLike;
     try {
-      deletedLike = await prismaClient.comment_like.delete({
+      deletedLike = await prismaClient.commentLike.delete({
         where: {
-          user_id_comment_id: {
-            comment_id: BigInt(req.params.commentId),
-            user_id: BigInt(req.currentUser!.id),
+          userId_commentId: {
+            commentId: BigInt(req.params.commentId),
+            userId: BigInt(req.currentUser!.id),
           },
         },
       });

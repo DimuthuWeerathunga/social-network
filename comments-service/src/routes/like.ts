@@ -20,10 +20,10 @@ router.post(
 
     let cretedLike;
     try {
-      cretedLike = await prismaClient.comment_like.create({
+      cretedLike = await prismaClient.commentLike.create({
         data: {
-          user_id: BigInt(req.currentUser!.id),
-          comment_id: BigInt(req.params.commentId),
+          userId: BigInt(req.currentUser!.id),
+          commentId: BigInt(req.params.commentId),
         },
       });
     } catch (e) {

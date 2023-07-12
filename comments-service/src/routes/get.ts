@@ -46,7 +46,7 @@ router.get('/api/comments', async (req: Request, res: Response) => {
     try {
       comments = await prismaClient.comment.findMany({
         where: {
-          parent_id: BigInt(parentCommentId.toString()),
+          parentId: BigInt(parentCommentId.toString()),
         },
       });
       if (comments.length == 0) {
@@ -64,7 +64,7 @@ router.get('/api/comments', async (req: Request, res: Response) => {
     try {
       comments = await prismaClient.comment.findMany({
         where: {
-          post_id: BigInt(postId.toString()),
+          postId: BigInt(postId.toString()),
         },
       });
       if (comments.length == 0) {
