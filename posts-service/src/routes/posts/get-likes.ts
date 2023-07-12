@@ -29,7 +29,7 @@ router.get('/api/posts/:postId/likes', async (req: Request, res: Response) => {
     }
   } catch (e) {
     if (e instanceof NotFoundError) {
-      throw new NotFoundError();
+      throw e;
     } else if (e instanceof PrismaClientKnownRequestError) {
       throw new BadRequestError('Bad request');
     } else {
