@@ -10,20 +10,19 @@ import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
-router.post(
+router.delete(
   '/api/comments/:commentId/likes',
   currentUser,
   requireAuth,
   async (req: Request, res: Response) => {
-    // check the db to see if there is a comment with the given id
-    // Edit I don't think we need to do that since I have the db constraint
-
-    let cretedLike;
+    let deletedLike;
     try {
-      cretedLike = await prismaClient.comment_like.create({
-        data: {
-          user_id: BigInt(req.currentUser!.id),
-          comment_id: BigInt(req.params.commentId),
+      deletedLike = await prismaClient.comment_like.delete({
+        where: {
+          user_id_comment_id: {
+            comment_id: BigInt(req.params.commentId),
+            user_id: BigInt(req.currentUser!.id),
+          },
         },
       });
     } catch (e) {
@@ -34,8 +33,8 @@ router.post(
         throw new InternalServerError();
       }
     }
-    res.status(201).json(cretedLike);
+    res.status(204).send();
   }
 );
 
-export { router as likeCommentRouter };
+export { router as unlikeCommentRouter };
