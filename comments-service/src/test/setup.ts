@@ -31,10 +31,10 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await prismaClient.$disconnect();
   await prismaClient.comment_like.deleteMany();
   await prismaClient.comment.deleteMany();
   await prismaClient.post.deleteMany();
+  await prismaClient.$disconnect();
 });
 
 global.signin = (id?: string, email?: string) => {
