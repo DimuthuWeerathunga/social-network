@@ -47,11 +47,11 @@ router.post(
     try {
       post = await prismaClient.post.create({
         data: {
-          user_id: BigInt(req.currentUser!.id),
-          topic_id: BigInt(topicId),
+          userId: BigInt(req.currentUser!.id),
+          topicId: BigInt(topicId),
           title,
           content,
-          image_urls: imageUrls,
+          imageUrls: imageUrls,
         },
       });
     } catch (e) {
@@ -59,18 +59,7 @@ router.post(
       throw new InternalServerError();
     }
 
-    const postToBeSent = {
-      id: post.id.toString(),
-      topicId: post.topic_id?.toString()!,
-      userId: post.user_id.toString(),
-      title: post.title,
-      content: post.content,
-      imageUrls: post.image_urls,
-      createdAt: post.created_at,
-      updatedAt: post.updated_at,
-    };
-
-    res.status(201).json(postToBeSent);
+    res.status(201).json(post);
   }
 );
 

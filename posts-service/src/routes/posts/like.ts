@@ -21,10 +21,10 @@ router.post(
 
     let createdLike;
     try {
-      createdLike = await prismaClient.post_like.create({
+      createdLike = await prismaClient.postLike.create({
         data: {
-          user_id: BigInt(req.currentUser!.id),
-          post_id: BigInt(postId),
+          userId: BigInt(req.currentUser!.id),
+          postId: BigInt(postId),
         },
       });
       if (!createdLike) {
