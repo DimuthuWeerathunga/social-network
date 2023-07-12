@@ -7,7 +7,7 @@ import { getCommentsRouter } from './routes/get';
 import { deleteCommentsRouter } from './routes/delete';
 import { likeCommentRouter } from './routes/like';
 import { unlikeCommentRouter } from './routes/unlike';
-import { getLikesRouter } from './routes/get-likes';
+import { getCommentLikesRouter } from './routes/get-likes';
 
 declare global {
   interface BigInt {
@@ -35,7 +35,7 @@ app.use(getCommentsRouter);
 app.use(deleteCommentsRouter);
 app.use(likeCommentRouter);
 app.use(unlikeCommentRouter);
-app.use(getLikesRouter);
+app.use(getCommentLikesRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();

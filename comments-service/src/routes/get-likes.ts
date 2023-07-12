@@ -44,4 +44,4 @@ router.get(
   }
 );
 
-export { router as getLikesRouter };
+export { router as getCommentLikesRouter };
