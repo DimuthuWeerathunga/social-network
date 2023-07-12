@@ -8,6 +8,7 @@ import { getPostRouter } from './routes/posts/get';
 import { deletePostRouter } from './routes/posts/delete';
 import { likePostRouter } from './routes/posts/like';
 import { getPostLikesRouter } from './routes/posts/get-likes';
+import { unlikePostRouter } from './routes/posts/unlike';
 
 declare global {
   interface BigInt {
@@ -35,6 +36,7 @@ app.use(addTopicRouter);
 app.use(getPostRouter);
 app.use(deletePostRouter);
 app.use(likePostRouter);
+app.use(unlikePostRouter);
 app.use(getPostLikesRouter);
 
 app.all('*', async (req, res) => {
