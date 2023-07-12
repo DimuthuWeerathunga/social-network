@@ -14,7 +14,6 @@ router.get(
           id: BigInt(req.params.commentId),
         },
         include: {
-          likes: true,
           _count: {
             select: {
               likes: true,
