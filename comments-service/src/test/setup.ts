@@ -24,7 +24,11 @@ beforeAll(async () => {
   }
 });
 
-beforeEach(async () => {});
+beforeEach(async () => {
+  await prismaClient.post.deleteMany();
+  await prismaClient.comment.deleteMany();
+  await prismaClient.comment_like.deleteMany();
+});
 
 afterAll(async () => {
   await prismaClient.$disconnect();
