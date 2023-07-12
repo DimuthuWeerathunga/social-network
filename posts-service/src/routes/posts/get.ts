@@ -5,6 +5,7 @@ import {
 } from '@dw-sn/common';
 import express, { Request, Response } from 'express';
 import { prismaClient } from '../../util/prisma-client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
@@ -15,11 +16,6 @@ router.get('/api/posts', async (req: Request, res: Response) => {
 });
 
 router.get('/api/posts/:postId', async (req: Request, res: Response) => {
-  // check the db to see if there is a post for this id
-  if (!req.params.postId) {
-    throw new BadRequestError('Post id not provided');
-  }
-
   let post;
   try {
     post = await prismaClient.post.findUnique({
@@ -27,13 +23,18 @@ router.get('/api/posts/:postId', async (req: Request, res: Response) => {
         id: BigInt(req.params.postId),
       },
     });
+    if (!post) {
+      throw new NotFoundError();
+    }
   } catch (e) {
-    console.error(e);
-    throw new InternalServerError();
-  }
-
-  if (!post) {
-    throw new NotFoundError();
+    if (e instanceof NotFoundError) {
+      throw e;
+    } else if (e instanceof PrismaClientKnownRequestError) {
+      throw new BadRequestError('Bad request');
+    } else {
+      console.error(e);
+      throw new InternalServerError();
+    }
   }
 
   res.status(200).json(post);
