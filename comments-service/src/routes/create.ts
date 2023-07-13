@@ -8,6 +8,10 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { prismaClient } from '../util/prisma-client';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
@@ -34,11 +38,15 @@ router.post(
             );
           }
         } catch (e) {
-          if (e instanceof BadRequestError) {
+          if (
+            e instanceof BadRequestError ||
+            e instanceof PrismaClientKnownRequestError ||
+            e instanceof PrismaClientValidationError
+          ) {
             throw e;
           } else {
             console.error(e);
-            throw new BadRequestError('Unknown error validating post id');
+            throw new BadRequestError('Bad request');
           }
         }
       }),
@@ -60,8 +68,12 @@ router.post(
         },
       });
     } catch (e) {
-      console.error(e);
-      throw new InternalServerError();
+      if (e instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestError('Bad request');
+      } else {
+        console.error(e);
+        throw new InternalServerError();
+      }
     }
     res.status(201).json({
       id: comment.id.toString(),

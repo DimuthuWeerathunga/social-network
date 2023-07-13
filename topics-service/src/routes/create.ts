@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   InternalServerError,
   currentUser,
   requireAuth,
@@ -7,6 +8,7 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { prismaClient } from '../util/prisma-client';
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
@@ -31,14 +33,13 @@ router.post(
           title: req.body.title,
         },
       });
-      if (!createdTopic) {
+    } catch (e) {
+      if (e instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestError('Bad request');
+      } else {
+        console.error(e);
         throw new InternalServerError();
       }
-    } catch (e) {
-      if (!(e instanceof InternalServerError)) {
-        console.error(e);
-      }
-      throw new InternalServerError();
     }
     res.status(201).json(createdTopic);
   }

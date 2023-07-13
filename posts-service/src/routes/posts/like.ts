@@ -27,14 +27,8 @@ router.post(
           postId: BigInt(postId),
         },
       });
-      if (!createdLike) {
-        throw new BadRequestError('Bad request');
-      }
     } catch (e) {
-      if (
-        e instanceof BadRequestError ||
-        e instanceof PrismaClientKnownRequestError
-      ) {
+      if (e instanceof PrismaClientKnownRequestError) {
         throw new BadRequestError('Bad request');
       } else {
         console.error(e);
