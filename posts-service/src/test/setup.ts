@@ -11,7 +11,7 @@ interface Signin {
 
 declare global {
   var signin: Signin;
-  var addTopic: () => Promise<number>;
+  var addTopic: () => Promise<string>;
 }
 
 beforeAll(async () => {

@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   InternalServerError,
   currentUser,
   requireAuth,
@@ -24,15 +25,25 @@ router.post(
           },
         });
         if (!retrievedTopic) {
-          throw new Error();
+          throw new BadRequestError('Failed to fetch the topic');
         }
       } catch (e) {
-        console.error(e);
-        throw new Error('Topic does not exist!');
+        if (e instanceof BadRequestError) {
+          throw e;
+        } else {
+          console.error(e);
+          throw new BadRequestError('Bad request');
+        }
       }
     }),
-    body('title').notEmpty().withMessage('A title should be provided'),
-    body('content').notEmpty().withMessage('Content must not be blank'),
+    body('title')
+      .isString()
+      .notEmpty()
+      .withMessage('A title should be provided'),
+    body('content')
+      .isString()
+      .notEmpty()
+      .withMessage('Content must not be blank'),
     body('imageUrls')
       .isArray()
       .withMessage('Image url format should be an array of strings'),
