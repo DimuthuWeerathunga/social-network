@@ -1,5 +1,5 @@
 {
-  "name": "users-service",
+  "name": "comments-service",
   "version": "1.0.0",
   "main": "index.js",
   "prisma": {
