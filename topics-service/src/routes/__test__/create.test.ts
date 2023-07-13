@@ -29,4 +29,29 @@ it('should not create a topic with incorrect input', async () => {
       title: 123,
     })
     .expect(400);
+
+  await request(app)
+    .post('/api/topics')
+    .set('Cookie', cookie)
+    .send({})
+    .expect(400);
+});
+
+it('should not allow duplicate topics', async () => {
+  const cookie = global.signin();
+  await request(app)
+    .post('/api/topics')
+    .set('Cookie', cookie)
+    .send({
+      title: 'new topic',
+    })
+    .expect(201);
+
+  await request(app)
+    .post('/api/topics')
+    .set('Cookie', cookie)
+    .send({
+      title: 'new topic',
+    })
+    .expect(400);
 });
