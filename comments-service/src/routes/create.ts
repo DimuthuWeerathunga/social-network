@@ -1,4 +1,5 @@
 import {
+  BadRequestError,
   InternalServerError,
   currentUser,
   requireAuth,
@@ -15,30 +16,36 @@ router.post(
   currentUser,
   requireAuth,
   [
-    body('postId').custom(async (postId: string) => {
-      if (!postId) {
-        throw new Error('Post id not provided');
-      }
-      try {
-        const post = await prismaClient.post.findUnique({
-          where: {
-            id: BigInt(postId),
-          },
-        });
-        if (!post) {
-          throw new Error(
-            'Failed to fetch the post which you are trying to comment on'
-          );
+    body('postId')
+      .isString()
+      .custom(async (postId: string) => {
+        if (!postId) {
+          throw new Error('Post id not provided');
         }
-      } catch (e) {
-        console.error(e);
-        if (e instanceof Error) {
-          throw new Error(e.message);
+        try {
+          const post = await prismaClient.post.findUnique({
+            where: {
+              id: BigInt(postId),
+            },
+          });
+          if (!post) {
+            throw new BadRequestError(
+              'Failed to fetch the post which you are trying to comment on'
+            );
+          }
+        } catch (e) {
+          if (e instanceof BadRequestError) {
+            throw e;
+          } else {
+            console.error(e);
+            throw new BadRequestError('Unknown error validating post id');
+          }
         }
-        throw new Error('Unknown error validating post id');
-      }
-    }),
-    body('content').notEmpty().withMessage('Empty comments are not allowed'),
+      }),
+    body('content')
+      .isString()
+      .notEmpty()
+      .withMessage('Empty comments are not allowed'),
   ],
   validateRequest,
   async (req: Request, res: Response) => {
