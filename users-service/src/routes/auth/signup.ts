@@ -5,6 +5,10 @@ import { BadRequestError, getJwtKey, validateRequest } from '@dw-sn/common';
 import { body } from 'express-validator';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
@@ -13,13 +17,28 @@ router.post(
   [
     body('email').isEmail().withMessage('Email must be valid'),
     body('email').custom(async (email) => {
-      const existingUser = await prismaClient.user.findUnique({
-        where: {
-          email,
-        },
-      });
-      if (existingUser) {
-        throw new Error('An account with this email address already exists');
+      try {
+        const existingUser = await prismaClient.user.findUnique({
+          where: {
+            email,
+          },
+        });
+        if (existingUser) {
+          throw new BadRequestError(
+            'An account with this email address already exists'
+          );
+        }
+      } catch (e) {
+        if (
+          e instanceof BadRequestError ||
+          e instanceof PrismaClientKnownRequestError ||
+          e instanceof PrismaClientValidationError
+        ) {
+          throw e;
+        } else {
+          console.error(e);
+          throw new BadRequestError('Bad request');
+        }
       }
     }),
     body('password')
