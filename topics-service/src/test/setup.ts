@@ -11,14 +11,13 @@ interface Signin {
 
 declare global {
   var signin: Signin;
-  var addTopic: () => Promise<string>;
 }
 
 beforeAll(async () => {
   try {
     await prismaClient.$connect();
-    await prismaClient.postLike.deleteMany();
-    await prismaClient.post.deleteMany();
+    await prismaClient.topicLikes.deleteMany();
+    await prismaClient.postWithTopic.deleteMany();
     await prismaClient.topic.deleteMany();
   } catch (e) {
     throw new Error('Failed to connect to db');
@@ -26,14 +25,14 @@ beforeAll(async () => {
 });
 
 beforeEach(async () => {
-  await prismaClient.postLike.deleteMany();
-  await prismaClient.post.deleteMany();
+  await prismaClient.topicLikes.deleteMany();
+  await prismaClient.postWithTopic.deleteMany();
   await prismaClient.topic.deleteMany();
 });
 
 afterAll(async () => {
-  await prismaClient.postLike.deleteMany();
-  await prismaClient.post.deleteMany();
+  await prismaClient.topicLikes.deleteMany();
+  await prismaClient.postWithTopic.deleteMany();
   await prismaClient.topic.deleteMany();
   await prismaClient.$disconnect();
 });
@@ -59,14 +58,4 @@ global.signin = (id?: string, email?: string) => {
 
   // return a string thats the cookie with the encoded data
   return [`session=${base64}`];
-};
-
-global.addTopic = async () => {
-  // call the add topic endpoint
-  const response = await request(app)
-    .post('/api/posts/topics')
-    .send({ id: '1', title: 'Test topic' })
-    .expect(201);
-
-  return response.body.id;
 };

@@ -15,7 +15,13 @@ router.post(
   '/api/users/followers',
   currentUser,
   requireAuth,
-  [body('followeeId').notEmpty().withMessage('Bad request')],
+  [
+    body('followeeId')
+      .isString()
+      .withMessage('Bad request')
+      .notEmpty()
+      .withMessage('Bad request'),
+  ],
   validateRequest,
   async (req: Request, res: Response) => {
     if (req.currentUser!.id === req.body.followeeId) {

@@ -1,0 +1,38 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model topic {
+  id        BigInt          @id @default(autoincrement())
+  userId    BigInt          @map("user_id")
+  title     String          @unique @db.VarChar(255)
+  likes     topicLikes[]
+  posts     postWithTopic[]
+  createdAt DateTime        @default(now()) @map("created_at")
+}
+
+model topicLikes {
+  userId  BigInt   @map("user_id")
+  topic   topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topicId BigInt   @map("topic_id")
+  likedAt DateTime @default(now()) @map("liked_at")
+
+  @@id([userId, topicId])
+}
+
+model postWithTopic {
+  id         BigInt @id
+  topic      topic  @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  topicId    BigInt @map("topic_id")
+  userId     BigInt @map("user_id")
+  title      String @db.VarChar(255)
+  content    String
+  likesCount Int
+
+  @@map("post_with_topic")
+}

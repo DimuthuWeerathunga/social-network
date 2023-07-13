@@ -18,7 +18,7 @@ it('Resturns a successful 201 on correct user follow action', async () => {
   await request(app)
     .post('/api/users/followers')
     .set('Cookie', janeCookie)
-    .send({ followeeId: +johnId.toString() })
+    .send({ followeeId: johnId.toString() })
     .expect(201);
 });
 
