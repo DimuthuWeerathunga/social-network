@@ -8,29 +8,31 @@ datasource db {
 }
 
 model topic {
-    id BigInt @id @default(autoincrement())
-    userId BigInt @map("user_id")
-    title String @db.VarChar(255) @unique
-    likes topicLikes[]
-    posts postWithTopic[]
-    createdAt DateTime @default(now()) @map("created_at")
+  id        BigInt          @id @default(autoincrement())
+  userId    BigInt          @map("user_id")
+  title     String          @unique @db.VarChar(255)
+  likes     topicLikes[]
+  posts     postWithTopic[]
+  createdAt DateTime        @default(now()) @map("created_at")
 }
 
 model topicLikes {
-    userId BigInt @map("user_id")
-    topic topic @relation(fields: [topicId], references: [id])
-    topicId BigInt @map("topic_id")
-    likedAt DateTime @default(now()) @map("liked_at")
-    @@id([userId, topicId])
+  userId  BigInt   @map("user_id")
+  topic   topic    @relation(fields: [topicId], references: [id])
+  topicId BigInt   @map("topic_id")
+  likedAt DateTime @default(now()) @map("liked_at")
+
+  @@id([userId, topicId])
 }
 
 model postWithTopic {
-    id BigInt @id
-    topic     topic    @relation(fields: [topicId], references: [id])
-    topicId   BigInt    @map("topic_id")
-    userId    BigInt     @map("user_id")
-    title     String     @db.VarChar(255)
-    content   String
-    likesCount  Int
-    @@map("post_with_topic")
+  id         BigInt @id
+  topic      topic  @relation(fields: [topicId], references: [id])
+  topicId    BigInt @map("topic_id")
+  userId     BigInt @map("user_id")
+  title      String @db.VarChar(255)
+  content    String
+  likesCount Int
+
+  @@map("post_with_topic")
 }
