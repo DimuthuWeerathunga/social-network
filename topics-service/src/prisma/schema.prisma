@@ -18,7 +18,7 @@ model topic {
 
 model topicLikes {
   userId  BigInt   @map("user_id")
-  topic   topic    @relation(fields: [topicId], references: [id])
+  topic   topic    @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId BigInt   @map("topic_id")
   likedAt DateTime @default(now()) @map("liked_at")
 
@@ -27,7 +27,7 @@ model topicLikes {
 
 model postWithTopic {
   id         BigInt @id
-  topic      topic  @relation(fields: [topicId], references: [id])
+  topic      topic  @relation(fields: [topicId], references: [id], onDelete: Cascade)
   topicId    BigInt @map("topic_id")
   userId     BigInt @map("user_id")
   title      String @db.VarChar(255)
