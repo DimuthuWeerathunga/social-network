@@ -8,6 +8,10 @@ import {
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
 import { prismaClient } from '../../util/prisma-client';
+import {
+  PrismaClientKnownRequestError,
+  PrismaClientValidationError,
+} from '@prisma/client/runtime/library';
 
 const router = express.Router();
 
@@ -16,7 +20,7 @@ router.post(
   currentUser,
   requireAuth,
   [
-    body('topicId').custom(async (topicId: number) => {
+    body('topicId').custom(async (topicId: string) => {
       // query the database to see if there is a topic with the given topic id
       try {
         const retrievedTopic = await prismaClient.topic.findUnique({
@@ -28,7 +32,11 @@ router.post(
           throw new BadRequestError('Failed to fetch the topic');
         }
       } catch (e) {
-        if (e instanceof BadRequestError) {
+        if (
+          e instanceof BadRequestError ||
+          e instanceof PrismaClientKnownRequestError ||
+          e instanceof PrismaClientValidationError
+        ) {
           throw e;
         } else {
           console.error(e);
@@ -66,8 +74,12 @@ router.post(
         },
       });
     } catch (e) {
-      console.error(e);
-      throw new InternalServerError();
+      if (e instanceof PrismaClientKnownRequestError) {
+        throw new BadRequestError('Bad request');
+      } else {
+        console.error(e);
+        throw new InternalServerError();
+      }
     }
 
     res.status(201).json(post);
