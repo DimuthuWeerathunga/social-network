@@ -2,6 +2,7 @@ import express from 'express';
 import 'express-async-errors';
 import cookieSession from 'cookie-session';
 import { NotFoundError, errorHandler } from '@dw-sn/common';
+import { createTopicRouter } from './routes/create';
 
 declare global {
   interface BigInt {
@@ -23,6 +24,8 @@ app.use(
     secure: process.env.NODE_ENV !== 'test',
   })
 );
+
+app.use(createTopicRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
