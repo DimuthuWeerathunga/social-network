@@ -7,7 +7,7 @@ Suggested Backend Design
 
 Recommendation System
 
-![Recommendation System](https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true)
+![Recommendation System](https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V2.png?raw=true)
 
 
 I hope to add proper documentation in the future so bear with me.
