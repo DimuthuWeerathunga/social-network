@@ -9,5 +9,4 @@ Recommendation System
 
 ![Recommendation System](https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V2.png?raw=true)
 
-
-I hope to add proper documentation in the future so bear with me.
+[Medium article explaining the recommendation system](https://medium.com/@dimuthu_weerathunga/a-scalable-user-recommendation-system-without-ai-possibly-over-engineered-d86146f43a7b)
