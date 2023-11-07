@@ -28,3 +28,28 @@ it('successfully creates a post with all inputs', async () => {
   expect(response.body.content).toEqual(content);
   expect(response.body.imageUrls).toEqual(imageUrls);
 });
+
+it('successfully creates a post with all inputs but without having a topic', async () => {
+  // get the cookie
+  const cookie = global.signin();
+  // create the post
+  const title = 'Test title';
+  const content = 'Test content';
+  const imageUrls = [
+    'https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true',
+    'https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true',
+  ];
+  const response = await request(app)
+    .post('/api/posts')
+    .set('Cookie', cookie)
+    .send({
+      title,
+      content,
+      imageUrls,
+    });
+
+  expect(response.body.topicId).toBeNull();
+  expect(response.body.title).toEqual(title);
+  expect(response.body.content).toEqual(content);
+  expect(response.body.imageUrls).toEqual(imageUrls);
+});

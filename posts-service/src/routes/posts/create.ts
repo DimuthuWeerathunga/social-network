@@ -22,6 +22,9 @@ router.post(
   [
     body('topicId').custom(async (topicId: string) => {
       // query the database to see if there is a topic with the given topic id
+      if (!topicId) {
+        return true;
+      }
       try {
         const retrievedTopic = await prismaClient.topic.findUnique({
           where: {
@@ -67,7 +70,7 @@ router.post(
       post = await prismaClient.post.create({
         data: {
           userId: BigInt(req.currentUser!.id),
-          topicId: BigInt(topicId),
+          topicId: !!topicId ? BigInt(topicId) : null,
           title,
           content,
           imageUrls: imageUrls,
