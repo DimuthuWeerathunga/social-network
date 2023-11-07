@@ -12,6 +12,7 @@ interface Signin {
 declare global {
   var signin: Signin;
   var addTopic: () => Promise<string>;
+  var createExamplePost: (topicId: string, cookie: string[]) => Promise<String>;
 }
 
 beforeAll(async () => {
@@ -68,5 +69,24 @@ global.addTopic = async () => {
     .send({ id: '1', title: 'Test topic' })
     .expect(201);
 
+  return response.body.id;
+};
+
+global.createExamplePost = async (topicId, cookie) => {
+  const title = 'Test title';
+  const content = 'Test content';
+  const imageUrls = [
+    'https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true',
+    'https://github.com/DimuthuWeerathunga/social-network/blob/main/Recommendation%20System%20V1.jpg?raw=true',
+  ];
+  const response = await request(app)
+    .post('/api/posts')
+    .set('Cookie', cookie)
+    .send({
+      topicId,
+      title,
+      content,
+      imageUrls,
+    });
   return response.body.id;
 };
