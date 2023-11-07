@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Feed {
+  id     BigInt @id @default(autoincrement())
+  userId BigInt @map("user_id")
+
+  @@map("feed")
+}
+
+model Follow {
+  followee_id BigInt
+  follower_id BigInt
+
+  @@id([followee_id, follower_id])
+  @@map("follow")
+}
+
+model Post {
+  id        BigInt   @id @default(autoincrement())
+  topicId   BigInt?  @map("topic_id")
+  userId    BigInt   @map("user_id")
+  title     String   @db.VarChar(255)
+  content   String
+  imageUrls String[] @map("image_urls")
+  createdAt DateTime @map("created_at")
+  updatedAt DateTime @map("updated_at")
+
+  @@map("post")
+}
+
+model FeedPost {
+  feedId BigInt @map("feed_id")
+  postId BigInt @map("post_id")
+
+  @@id([feedId, postId])
+  @@map("feed_post")
+}
+
+model TopicLike {
+  userId  BigInt   @map("user_id")
+  topicId BigInt   @map("topic_id")
+  likedAt DateTime @map("liked_at")
+
+  @@id([userId, topicId])
+  @@map("topic_like")
+}
