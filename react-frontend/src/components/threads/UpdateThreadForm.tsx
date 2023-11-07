@@ -1,6 +1,6 @@
 import React, { FC, useState } from 'react';
-import { Form, Button, Upload, Input, Modal } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import { Form, Button, Upload, Input, Modal } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
   labelCol: {
@@ -28,12 +28,11 @@ const getBase64 = (file: File) => {
 };
 
 const UpdateThreadForm: FC = () => {
-  // TODO redefine types where needed
-
+  // TODO[] redefine types where needed
 
   const [previewVisible, setPreviewVisible] = useState(false);
-  const [previewImage, setPreviewImage] = useState<string>("");
-  const [previewTitle, setPreviewTitle] = useState<string>("");
+  const [previewImage, setPreviewImage] = useState<string>('');
+  const [previewTitle, setPreviewTitle] = useState<string>('');
   const [fileList, setFileList] = useState<any[]>([]);
 
   const handlePreview = async (file: any) => {
@@ -43,7 +42,7 @@ const UpdateThreadForm: FC = () => {
     setPreviewImage(file.url || file.preview);
     setPreviewVisible(true);
     setPreviewTitle(
-      file.name || file.url.substring(file.url.lastIndexOf("/") + 1)
+      file.name || file.url.substring(file.url.lastIndexOf('/') + 1)
     );
   };
 
@@ -56,17 +55,17 @@ const UpdateThreadForm: FC = () => {
   };
 
   const beforeUpload = (file: File, fileList: File[]) => {
-    if (file.type === "image/jpeg" || file.type === "image/png") {
+    if (file.type === 'image/jpeg' || file.type === 'image/png') {
       return true;
     } else {
-      console.log("You cant uploald files other than jpeg");
+      console.log('You cant uploald files other than jpeg');
       console.log(fileList);
       return Upload.LIST_IGNORE;
     }
   };
 
   const onFinish = (values: any) => {
-    console.log("Received values of form: ", values);
+    console.log('Received values of form: ', values);
   };
 
   const uploadButton = (
@@ -86,8 +85,8 @@ const UpdateThreadForm: FC = () => {
         {...formItemLayout}
         onFinish={onFinish}
         initialValues={{
-          "input-number": 3,
-          "checkbox-group": ["A", "B"],
+          'input-number': 3,
+          'checkbox-group': ['A', 'B'],
           rate: 3.5,
         }}
       >
@@ -98,7 +97,7 @@ const UpdateThreadForm: FC = () => {
           rules={[
             {
               required: true,
-              message: "Please enter the title of the thread!",
+              message: 'Please enter the title of the thread!',
             },
           ]}
         >
@@ -112,7 +111,7 @@ const UpdateThreadForm: FC = () => {
           rules={[
             {
               required: true,
-              message: "Please enter a topic!",
+              message: 'Please enter a topic!',
             },
           ]}
         >
@@ -125,7 +124,7 @@ const UpdateThreadForm: FC = () => {
           rules={[
             {
               required: true,
-              message: "Please enter your post content!",
+              message: 'Please enter your post content!',
             },
           ]}
         >
@@ -142,8 +141,8 @@ const UpdateThreadForm: FC = () => {
             name="images"
             beforeUpload={beforeUpload}
             customRequest={({ onSuccess }) => {
-              console.log("Custome request handled");
-              if(onSuccess){
+              console.log('Custome request handled');
+              if (onSuccess) {
                 // onSuccess();
               }
               // console.log(fileList);
@@ -175,7 +174,7 @@ const UpdateThreadForm: FC = () => {
         footer={null}
         onCancel={handleCancel}
       >
-        <img alt="example" style={{ width: "100%" }} src={previewImage} />
+        <img alt="example" style={{ width: '100%' }} src={previewImage} />
       </Modal>
     </>
   );

@@ -14,7 +14,7 @@ const LoginForm: FC = () => {
   const auth = useContext(AuthContext);
 
   const onFinish = async (values: LoginFormOutput): Promise<void> => {
-    let response: AxiosResponse<{token: string}> | undefined;
+    let response: AxiosResponse<{ token: string }> | undefined;
     try {
       response = await axios.post(
         import.meta.env.VITE_AUTH_SERVICE_BACKEND_URL + '/signin',
@@ -22,7 +22,7 @@ const LoginForm: FC = () => {
       );
       console.log(response?.data);
     } catch (error) {
-       console.error(error)
+      console.error(error);
       if (axios.isAxiosError(error)) {
         console.log(error?.response?.data.message);
       }
@@ -34,16 +34,16 @@ const LoginForm: FC = () => {
 
   return (
     <Form
-      name='normal_login'
-      className='login-form'
+      name="normal_login"
+      className="login-form"
       initialValues={{
         remember: true,
       }}
       onFinish={onFinish}
-      size='large'
+      size="large"
     >
       <Form.Item
-        name='email'
+        name="email"
         rules={[
           {
             required: true,
@@ -56,12 +56,12 @@ const LoginForm: FC = () => {
         ]}
       >
         <Input
-          prefix={<UserOutlined className='site-form-item-icon' />}
-          placeholder='Email'
+          prefix={<UserOutlined className="site-form-item-icon" />}
+          placeholder="Email"
         />
       </Form.Item>
       <Form.Item
-        name='password'
+        name="password"
         rules={[
           {
             required: true,
@@ -70,17 +70,17 @@ const LoginForm: FC = () => {
         ]}
       >
         <Input
-          prefix={<LockOutlined className='site-form-item-icon' />}
-          type='password'
-          placeholder='Password'
+          prefix={<LockOutlined className="site-form-item-icon" />}
+          type="password"
+          placeholder="Password"
         />
       </Form.Item>
 
       <Form.Item style={{ textAlign: 'center' }}>
         <Button
-          type='primary'
-          htmlType='submit'
-          className='login-form-button'
+          type="primary"
+          htmlType="submit"
+          className="login-form-button"
           block
         >
           Log in
@@ -92,7 +92,7 @@ const LoginForm: FC = () => {
             marginTop: '1rem',
           }}
         >
-          Or <Link to='/'>Register now!</Link>
+          Or <Link to="/">Register now!</Link>
         </span>
       </Form.Item>
     </Form>
