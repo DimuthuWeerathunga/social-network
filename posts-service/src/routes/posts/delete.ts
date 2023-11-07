@@ -16,7 +16,6 @@ router.delete(
   currentUser,
   requireAuth,
   async (req: Request, res: Response) => {
-    // check the person who is trying to delete the post is the owner himself,
     if (!req.params.postId) {
       throw new BadRequestError('Post id not provided');
     }
@@ -37,6 +36,7 @@ router.delete(
       throw new NotFoundError();
     }
 
+    // check the person who is trying to delete the post is the owner himself,
     if (post.userId.toString() !== req.currentUser!.id) {
       throw new UnAuthorizedError();
     }
