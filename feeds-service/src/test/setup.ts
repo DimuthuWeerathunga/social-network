@@ -14,24 +14,30 @@ declare global {
 beforeAll(async () => {
   try {
     await prismaClient.$connect();
-    // await prismaClient.postLike.deleteMany();
-    // await prismaClient.post.deleteMany();
-    // await prismaClient.topic.deleteMany();
+    await prismaClient.post.deleteMany();
+    await prismaClient.feedPost.deleteMany();
+    await prismaClient.follow.deleteMany();
+    await prismaClient.feed.deleteMany();
+    await prismaClient.topicLike.deleteMany();
   } catch (e) {
     throw new Error('Failed to connect to db');
   }
 });
 
 beforeEach(async () => {
-  // await prismaClient.postLike.deleteMany();
-  // await prismaClient.post.deleteMany();
-  // await prismaClient.topic.deleteMany();
+  await prismaClient.post.deleteMany();
+  await prismaClient.feedPost.deleteMany();
+  await prismaClient.follow.deleteMany();
+  await prismaClient.feed.deleteMany();
+  await prismaClient.topicLike.deleteMany();
 });
 
 afterAll(async () => {
-  // await prismaClient.postLike.deleteMany();
-  // await prismaClient.post.deleteMany();
-  // await prismaClient.topic.deleteMany();
+  await prismaClient.post.deleteMany();
+  await prismaClient.feedPost.deleteMany();
+  await prismaClient.follow.deleteMany();
+  await prismaClient.feed.deleteMany();
+  await prismaClient.topicLike.deleteMany();
   await prismaClient.$disconnect();
 });
 

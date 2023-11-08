@@ -10,37 +10,41 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Follow {
+  followeeId BigInt @map("followee_id")
+  followerId BigInt @map("follower_id")
+
+  @@id([followeeId, followerId])
+  @@map("follow")
+}
+
 model Feed {
-  id     BigInt @id @default(autoincrement())
-  userId BigInt @unique @map("user_id")
+  id     BigInt     @id @default(autoincrement())
+  userId BigInt     @unique @map("user_id")
+  posts  FeedPost[]
 
   @@map("feed")
 }
 
-model Follow {
-  followee_id BigInt
-  follower_id BigInt
-
-  @@id([followee_id, follower_id])
-  @@map("follow")
-}
-
 model Post {
-  id        BigInt   @id @default(autoincrement())
-  topicId   BigInt?  @map("topic_id")
-  userId    BigInt   @map("user_id")
-  title     String   @db.VarChar(255)
+  id        BigInt     @id @default(autoincrement())
+  topicId   BigInt?    @map("topic_id")
+  userId    BigInt     @map("user_id")
+  title     String     @db.VarChar(255)
   content   String
-  imageUrls String[] @map("image_urls")
-  createdAt DateTime @map("created_at")
-  updatedAt DateTime @map("updated_at")
+  imageUrls String[]   @map("image_urls")
+  createdAt DateTime   @map("created_at")
+  updatedAt DateTime   @map("updated_at")
+  feeds     FeedPost[]
 
   @@map("post")
 }
 
 model FeedPost {
   feedId BigInt @map("feed_id")
+  feed   Feed   @relation(fields: [feedId], references: [id], onDelete: Cascade)
   postId BigInt @map("post_id")
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@id([feedId, postId])
   @@map("feed_post")

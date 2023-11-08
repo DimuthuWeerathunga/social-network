@@ -1,15 +1,8 @@
+import { NotFoundError, errorHandler } from '@dw-sn/common';
+import cookieSession from 'cookie-session';
 import express from 'express';
 import 'express-async-errors';
-import cookieSession from 'cookie-session';
-import { NotFoundError, errorHandler } from '@dw-sn/common';
-import { createPostRouter } from './routes/posts/create';
-import { addTopicRouter } from './routes/topics/add';
-import { getPostRouter } from './routes/posts/get';
-import { deletePostRouter } from './routes/posts/delete';
-import { likePostRouter } from './routes/posts/like';
-import { getPostLikesRouter } from './routes/posts/get-likes';
-import { unlikePostRouter } from './routes/posts/unlike';
-import { updatePostRouter } from './routes/posts/update';
+import { getFeedRouter } from './routes/get';
 
 declare global {
   interface BigInt {
@@ -32,14 +25,7 @@ app.use(
   })
 );
 
-app.use(createPostRouter);
-app.use(getPostRouter);
-app.use(updatePostRouter);
-app.use(deletePostRouter);
-app.use(addTopicRouter);
-app.use(likePostRouter);
-app.use(getPostLikesRouter);
-app.use(unlikePostRouter);
+app.use(getFeedRouter);
 
 app.all('*', async (req, res) => {
   throw new NotFoundError();
