@@ -10,7 +10,8 @@
     "test": "dotenv -e .env.test -- jest --watchAll --no-cache --detectOpenHandles --runInBand",
     "create:migrate:dev": "dotenv -e .env prisma migrate dev",
     "create:migrate:test": "dotenv -e .env.test prisma migrate dev",
-    "setup:test": "docker-compose -f ./src/test/docker-compose.yml up -d && npm run create:migrate:test && npm run test"
+    "setup:test": "docker-compose -f ./src/test/docker-compose.yml up -d && npm run create:migrate:test && npm run test",
+    "setup:test:ci": "npm run create:migrate:test && npm run test"
   },
   "jest": {
     "preset": "ts-jest",
