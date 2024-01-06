@@ -57,11 +57,10 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x.x
-          cache: npm
 
       # The `run` key tells the job to execute a command on the runner. In this example, `npm ci` is used to install the npm software packages for the project.
       - name: NPM Install
-        run: npm i
+        run: cd users-service && npm i
 
       # This step uses the `trilom/file-changes-action` action to gather all the changed files. This example is pinned to a specific version of the action, using the `a6ca26c14274c33b15e6499323aac178af06ad4b` SHA.
       #
@@ -77,7 +76,7 @@ jobs:
 
       - name: users-service tests run
         run: |
-          npm run setup:test
+          cd users-service && npm run setup:test
 
       # This step uses the `run` command to execute a script that is stored in the repository at `script/rendered-content-link-checker.mjs` and passes all the parameters it needs to run.
       # - name: Link check (warnings, changed files)
