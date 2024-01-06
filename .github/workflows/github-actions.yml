@@ -38,6 +38,10 @@ jobs:
       users_postgres_test:
         # Docker Hub image
         image: postgres
+
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
         #
         ports:
           # Opens tcp port 6379 on the host and service container
