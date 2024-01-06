@@ -8,7 +8,6 @@ on:
   push:
     branches:
       - main
-      - development
   # Add the `pull_request` event, so that the workflow runs automatically every time a pull request is created or updated. For more information, see [`pull_request`](/actions/using-workflows/events-that-trigger-workflows#pull_request).
   pull_request:
 
@@ -77,7 +76,7 @@ jobs:
 
           # The `run` key tells the job to execute a command on the runner. In this example, `npm ci` is used to install the npm software packages for the project.
       - name: NPM Install
-        run: cd users-service && npm i
+        run: cd users-service && npm ci
 
       - name: users-service tests run
         run: |
