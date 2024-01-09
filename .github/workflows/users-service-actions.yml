@@ -10,7 +10,9 @@ on:
       - main
   # Add the `pull_request` event, so that the workflow runs automatically every time a pull request is created or updated. For more information, see [`pull_request`](/actions/using-workflows/events-that-trigger-workflows#pull_request).
   pull_request:
-    paths: users-service/**
+    paths:
+      - users-service/**
+      - .github/**
 
 # This modifies the default permissions granted to `GITHUB_TOKEN`. This will vary depending on the needs of your workflow. For more information, see "[AUTOTITLE](/actions/using-jobs/assigning-permissions-to-jobs)."
 
