@@ -77,9 +77,9 @@ jobs:
         run:
           cat $HOME/files.json
 
-          # The `run` key tells the job to execute a command on the runner. In this example, `yarn ci` is used to install the yarn software packages for the project.
+          # The `run` key tells the job to execute a command on the runner. In this example, `yarn install --frozen-lockfile` is used to install the yarn software packages for the project.
       - name: yarn Install
-        run: cd posts-service && yarn ci
+        run: cd posts-service && yarn install --frozen-lockfile
 
       - name: posts-service tests run
         run: |
