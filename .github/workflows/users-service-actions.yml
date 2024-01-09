@@ -51,7 +51,7 @@ jobs:
     # The `steps` key groups together all the steps that will run as part of the `check-links` job. Each job in a workflow has its own `steps` section.
     steps:
       # The `uses` key tells the job to retrieve the action named `actions/checkout`. This is an action that checks out your repository and downloads it to the runner, allowing you to run actions against your code (such as testing tools). You must use the checkout action any time your workflow will use the repository's code or you are using an action defined in the repository.
-      - name: Checkout users-serice code + .github
+      - name: Checkout users-service code + .github
         uses: actions/checkout@v4
         with:
           sparse-checkout: |
