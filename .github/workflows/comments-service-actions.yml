@@ -1,4 +1,4 @@
-name: 'Users Service CI'
+name: 'Comments Service CI'
 
 # The `on` key lets you define the events that trigger when the workflow is run. You can define multiple events here. For more information, see "[AUTOTITLE](/actions/using-workflows/triggering-a-workflow#using-events-to-trigger-workflows)."
 on:
