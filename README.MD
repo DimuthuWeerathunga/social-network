@@ -13,5 +13,3 @@ Recommendation System
 TODOS:
 
 - Partition the feed service's database
-
-I hope to add proper documentation in the future so bear with me.
